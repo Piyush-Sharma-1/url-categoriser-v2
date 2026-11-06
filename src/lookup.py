@@ -17,10 +17,13 @@ def load_lookup(path=LOOKUP_PATH):
     return json.loads(gzip.decompress(path.read_bytes()))
 
 
+def confident_counts(rows):
+    return collections.Counter(row["we360_category"] for row in rows if row["status"] == "confident")
+
+
 def shares(rows):
-    """Return the confident categories among rows with their share of all rows, largest first."""
-    counts = collections.Counter(row["we360_category"] for row in rows if row["status"] == "confident")
-    return [{"category": name, "confidence": round(n / len(rows), 3)} for name, n in counts.most_common()]
+    """Return the confident categories among rows with their share of all rows, largest first, rounded for display."""
+    return [{"category": name, "confidence": round(n / len(rows), 3)} for name, n in confident_counts(rows).most_common()]
 
 
 def ambiguous_candidates(rows):
@@ -34,8 +37,9 @@ def ambiguous_candidates(rows):
 
 def vote(rows):
     """Return (category or None, share, reason, alternatives). Also labels the model's training URLs."""
+    counts = confident_counts(rows)
     ranked = shares(rows)
-    if ranked and ranked[0]["confidence"] >= MIN_SHARE:
+    if counts and counts.most_common(1)[0][1] / len(rows) >= MIN_SHARE:
         return ranked[0]["category"], ranked[0]["confidence"], None, ranked[1:3]
     if ranked:
         return None, 0.0, "curlie_split_votes", ranked[:3]

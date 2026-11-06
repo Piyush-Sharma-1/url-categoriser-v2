@@ -4,6 +4,8 @@ An offline Python tool that assigns a URL to one of We360's 29 categories and ex
 
 The full spec, taxonomy rules, category definitions, and detailed results are in [docs/DECISIONS.md](docs/DECISIONS.md).
 
+An extension that adds a second dataset (UT1) is in the separate repository url-categoriser-v2.
+
 ## Quickstart
 
 This needs Python 3.12 or newer. The built lookup and model are in the repo, so you don't need to download the dataset.
@@ -66,7 +68,7 @@ To rebuild from source, `python -m src.build` downloads the Curlie dump (about 1
 
 ## Results summary
 
-No code, data, or threshold changed after these results were seen. Per-category scores and every group are in [docs/DECISIONS.md](docs/DECISIONS.md#detailed-results) and `reports/`.
+No model, lookup, map, curated list, or threshold changed after these results were seen. Later code changes are listed under [Changes after the test run](#changes-after-the-test-run). Per-category scores and every group are in [docs/DECISIONS.md](docs/DECISIONS.md#detailed-results) and `reports/`.
 
 ### Whole pipeline: gold set
 
@@ -80,6 +82,8 @@ The headline group is 75 drafted URLs, none from the sites looked up while build
 | Precision on answered URLs | 0.975 | 0.000 |
 
 Of the 21 strict misses, 20 returned `Undefined`, and only 1 gave a wrong category. Without the curated list, strict accuracy falls to 0.627.
+
+One limitation: the 15 rows labelled `Undefined` had earlier notes that suggested that answer, before the notes were cleaned. The pipeline answered all 15 correctly, so that part of the score may not be fully independent.
 
 ### Text model: test set
 
@@ -112,6 +116,17 @@ These are validation figures, because the test set was only measured at 0.60 and
 | 0.80 | 0.033 | 0.825 |
 | 0.90 | 0.018 | 0.851 |
 
+## Changes after the test run
+
+These post-hoc code changes were made after the test run:
+
+- Removed the unused code and tests for an empty `own` gold group.
+- The build now writes the dropped-listing count to `reports/build_report.txt`.
+- The model's `alternatives` no longer include its own answer, matching Curlie's.
+- `vote()` compares the unrounded share against 0.60 and rounds only for display.
+
+None of them changes a reported number. A rebuild reproduced the model and lookup byte for byte, and the regenerated gold report is identical. None of them needed the test set to run again.
+
 ## Key findings
 
 - **Most misses are modern SaaS products missing from Curlie.** Curlie descends from DMOZ, so its coverage of newer products is thin. Of the 21 misses, 16 are missing from the Curlie branches the tool uses. Of those, 12 are SaaS products such as Hotjar, Aircall, Mattermost, and Obsidian, and none of the 12 appear anywhere in the dump.
@@ -131,6 +146,7 @@ These are validation figures, because the test set was only measured at 0.60 and
 - **AI assistant taxonomy gap:** no We360 category fits AI assistants, so `chatgpt.com`, `claude.ai`, `gemini.google.com`, `perplexity.ai`, and `copilot.microsoft.com` go to Research & Reference, with Developer and Office Apps as alternatives.
 - **No CRM category:** `salesforce.com` and `force.com` go to Marketing, with Office Apps as the alternative.
 - **Language limits:** sites listed only under Curlie's World or Regional branches are missing from the lookup, and the model can't reliably recognise non-Latin or transliterated host names. Major Indian and non-English sites rely on the curated list.
+- **Leftover model tokens:** the model's `DROP_TOKENS` list still removes tokens from its earlier URL version, so `php.net` reaches the model as just `net`. Fixing this would change the model after the test run, so it stays as it is.
 - **Windows:** the build and tests are written to run on Windows, but they have only been run on Linux.
 - **Small samples:** each drafted gold row moves a score by about 1.3 points, and some test categories are small, such as File Sharing with 13 examples and Meeting with 16.
 
@@ -148,10 +164,10 @@ These are validation figures, because the test set was only measured at 0.60 and
 
 | Group | Lines of Python |
 |---|---:|
-| Core code (`src/`) | 864 |
-| Tests (`tests/`) | 647 |
+| Core code (`src/`) | 867 |
+| Tests (`tests/`) | 662 |
 | Analysis script (`scripts/inspect_dump.py`) | 138 |
-| **Total** | **1,649** |
+| **Total** | **1,667** |
 
 This is over the 1,000-line target because tests make up much of it, and the training and evaluation code was kept readable rather than compressed. CSV data and documentation don't count.
 

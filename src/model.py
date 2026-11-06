@@ -40,8 +40,8 @@ def predict(host, model):
     classes = model["classifier"].classes_
     scores = model["classifier"].predict_proba(vector)[0]
     ranked = scores.argsort()[::-1]
-    alternatives = [{"category": str(classes[i]), "confidence": round(float(scores[i]), 3)} for i in ranked[:3]]
+    candidates = [{"category": str(classes[i]), "confidence": round(float(scores[i]), 3)} for i in ranked[:3]]
     best = ranked[0]
     if scores[best] < model["threshold"]:
-        return None, 0.0, alternatives, []
-    return str(classes[best]), round(float(scores[best]), 3), alternatives, top_ngrams(vector, best, model)
+        return None, 0.0, candidates, []
+    return str(classes[best]), round(float(scores[best]), 3), candidates[1:], top_ngrams(vector, best, model)

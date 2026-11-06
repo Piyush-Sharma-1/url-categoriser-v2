@@ -91,7 +91,7 @@ The evidence for these exclusions is under [Why World, Regional, and Kids_and_Te
 
 `data/taxonomy_map.csv` has the columns `curlie_path`, `we360_category`, `status`, and `note`. The longest whole-segment prefix wins. Prefixes only, with no wildcards, and every row has a note. `status` is exactly one of:
 
-- `confident`: fits one We360 category clearly
+- `confident`: one category chosen; judgement calls are flagged in the note
 - `ambiguous`: plausibly fits two or more, listed with `|`, such as `Job Search|Hiring & Recruitment`
 - `unmapped`: no We360 equivalent, with `we360_category` empty
 
@@ -112,7 +112,7 @@ The map is frozen unless the evaluation shows a clear problem.
 - Include `khanacademy.org`, whose homepage listing is lost by ignoring Kids_and_Teens.
 - `alternative_category` is optional and goes in `alternatives`, such as Teams: Meeting, alternative Chat & Messaging. Several are separated with `|`.
 
-Confidence 1.0, method `curated`, about 100 rows, and every row is reviewed by the project owner.
+Confidence 1.0, method `curated`, 143 rows, and every row is reviewed by the project owner.
 
 ### G. Curlie lookup
 
@@ -129,7 +129,7 @@ The input URL's path plays no part in the lookup, so a deep URL gets the same an
 
 Decide from the listings found, where share = votes for a confident category / all listings found (confident + ambiguous + unmapped):
 
-- Top confident share of at least 0.60: that category, confidence = share, method `curlie`.
+- Top confident share of at least 0.60, compared before rounding: that category, confidence = share rounded to 3 decimals, method `curlie`.
 - Otherwise, any confident votes: Undefined (`curlie_split_votes`), top candidates in `alternatives`.
 - Otherwise, any ambiguous votes: Undefined (`curlie_ambiguous`), candidates in `alternatives`.
 - Otherwise, only unmapped: Undefined (`curlie_unmapped`), Curlie path in `evidence`.
@@ -156,7 +156,7 @@ If Curlie lists the site, the text model does not run. The lookup uses all filte
 
 If the saved model exceeds 25 MB, raise `min_df` to 3 and note it here. With balanced class weights, scores are not true probabilities.
 
-**Prediction:** if the top score reaches the threshold, return that category, method `model`, the top 3 in `alternatives`, and the top 5 contributing n-grams in `evidence` (contribution = TF-IDF value x coefficient for the predicted class). Otherwise return Undefined (`model_low_confidence`). A host with no known n-gram always returns Undefined.
+**Prediction:** if the top score reaches the threshold, return that category, method `model`, the next 2 categories in `alternatives`, and the top 5 contributing n-grams in `evidence` (contribution = TF-IDF value x coefficient for the predicted class). `alternatives` excludes the model's own answer, as it does for Curlie. Otherwise return Undefined (`model_low_confidence`), with the top 3 candidates in `alternatives`. A host with no known n-gram always returns Undefined.
 
 ### I. Threshold
 
@@ -195,18 +195,17 @@ Every result has all fields:
 - the Undefined rate, broken down by `undefined_reason`
 - results with and without the curated list
 - every case where the curated list overrode Curlie
-- separate groups for the drafted candidates, `major-app` rows, and Indian and non-English rows, plus `own` rows if any exist
+- separate groups for the drafted candidates, `major-app` rows, and Indian and non-English rows
 
 `Undefined` is a valid gold label: predicting Undefined for it is correct, and predicting a category is wrong. Every score appears beside the majority-label baseline. There are no per-category gold scores because the set is too small.
 
 **Gold candidates:** about 75 drafted URLs, with at least 2 per category where possible, about 15 likely to be Undefined, and about 10 Indian or non-English tagged in `note`. Notes describe the site without suggesting a label. The 92 hosts in `data/mapping_probe_hosts.txt` were looked up while drafting the map or testing the lookup, so neither they nor any host under the same registered domain can be drafted candidates.
 
-**Who labelled the gold set:** Gold labels for the drafted and major-app rows were drafted by a second AI model (which also reviewed and helped shape the design) without seeing the tool's predictions, then reviewed and confirmed by me.
+**Known limitation of the gold set:** the 15 rows labelled `Undefined` had earlier notes that suggested that answer, before the notes were cleaned. The pipeline answered all 15 correctly, so that part of the score may not be fully independent.
 
 **Tagged rows:** a tag is a whole word in `note`.
 
 - `major-app`: 10 realistic URLs for major workplace apps. The probe-host exclusion does not apply, because the curated list decides them, not Curlie.
-- `own`: reserved for URLs from the project owner's browsing. None were added, so this group is empty.
 
 ### L. Language limitation
 
@@ -331,8 +330,6 @@ These are **gold results** from `python -m src.evaluate gold`, saved in `reports
 | All rows | Without | 85 | 0.600 | 0.612 | 0.435 | 0.973 |
 | All rows baseline (always Undefined) | Not used | 85 | 0.176 | 0.176 | 0.000 | 0.000 |
 
-The `own` group is empty, because no `own` rows were added.
-
 Drafted candidates by method, with the curated list:
 
 | Method | Share of rows | Strict accuracy | Lenient accuracy |
@@ -356,7 +353,7 @@ Undefined rate by reason, as row counts:
 
 The curated list overrode a Curlie answer on no gold row. Of the 21 rows missed on strict accuracy, 20 returned Undefined and 1 gave a wrong category (`tiktok.com` as Music & Videos, which `also_acceptable` allows). The gold report lists all 21.
 
-**No post-hoc changes:** no code, map rows, curated rows, or thresholds changed after these results were seen. The checksums of the model, lookup, taxonomy map, and curated list matched before and after both runs.
+**No post-hoc changes to results:** no map rows, curated rows, or thresholds changed after these results were seen, and the checksums of the model, lookup, taxonomy map, and curated list matched before and after both runs. Later code changes, which change no reported number, are listed in the README under "Changes after the test run".
 
 ### Model training
 
@@ -421,7 +418,7 @@ Listings per top-level branch (2,739,037 in total):
 | Adult | 6,403 | Mapped as `unmapped` |
 | News | 5,004 | Mapped |
 
-Of the 746,967 retained listings, 470,372 are `confident`, 276,408 are `unmapped`, and 187 are `ambiguous`. The build drops 3 of them because their URLs fail normalisation.
+Of the 746,967 retained listings, 470,372 are `confident`, 276,408 are `unmapped`, and 187 are `ambiguous`. The build drops 3 of them because their URLs fail normalisation, as recorded in `reports/build_report.txt`.
 
 Listings per We360 category after mapping:
 

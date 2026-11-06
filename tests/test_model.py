@@ -24,10 +24,10 @@ def small_model(threshold=0.0):
     return model
 
 
-def test_prediction_gives_category_top_three_and_ngrams():
+def test_prediction_gives_category_other_candidates_and_ngrams():
     category, score, alternatives, evidence = predict("football-sports.example", small_model())
     assert category == "Sports" and 0 < score <= 1
-    assert [item["category"] for item in alternatives][0] == "Sports" and len(alternatives) == 3
+    assert len(alternatives) == 2 and "Sports" not in [item["category"] for item in alternatives]
     assert 1 <= len(evidence) <= 5 and evidence[0].startswith("N-gram")
 
 

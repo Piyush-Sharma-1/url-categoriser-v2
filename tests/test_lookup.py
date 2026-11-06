@@ -1,6 +1,6 @@
 import pytest
 
-from src.lookup import curlie_lookup
+from src.lookup import curlie_lookup, vote
 
 SPORTS, GAMES, RETAIL, SOCIETY = 0, 1, 2, 3
 TAXONOMY = {
@@ -64,6 +64,13 @@ def test_undefined(host, reason, candidates):
     decision = run(host)
     assert (decision["category"], decision["confidence"], decision["reason"]) == (None, 0.0, reason)
     assert {item["category"] for item in decision["alternatives"]} == candidates
+
+
+def test_a_share_just_below_60_percent_does_not_pass_after_rounding():
+    rows = [TAXONOMY["Sports"]] * 1499 + [TAXONOMY["Society"]] * 1001  # 59.96%, which rounds to 0.600.
+    category, confidence, reason, alternatives = vote(rows)
+    assert (category, confidence, reason) == (None, 0.0, "curlie_split_votes")
+    assert alternatives[0] == {"category": "Sports", "confidence": 0.6}
 
 
 def test_unlisted_site_goes_to_the_model():

@@ -106,7 +106,7 @@ def load_gold(path=GOLD_PATH):
 
 
 def has_tag(row, tag):
-    """Tags are whole words in the note, so "own" does not match "unknown"."""
+    """Tags are whole words in the note, so "indian" does not match "indiana"."""
     return tag in re.findall(r"[\w-]+", row["note"].lower())
 
 
@@ -171,9 +171,8 @@ def gold_groups(rows):
 
     return [
         ("All rows", positions(lambda row: True)),
-        ("Drafted candidates", positions(lambda row: not has_tag(row, "major-app") and not has_tag(row, "own"))),
+        ("Drafted candidates", positions(lambda row: not has_tag(row, "major-app"))),
         ("major-app rows", positions(lambda row: has_tag(row, "major-app"))),
-        ("own rows", positions(lambda row: has_tag(row, "own"))),
         ("Indian and non-English rows", positions(lambda row: has_tag(row, "indian") or has_tag(row, "non-english"))),
     ]
 

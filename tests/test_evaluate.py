@@ -77,15 +77,13 @@ def test_gold_set_must_be_fully_and_validly_labelled(tmp_path, label, also_accep
 
 
 def test_gold_set_saved_by_excel_still_loads(tmp_path):
-    row = {"url": "a.com", "label": "Undefined", "also_acceptable": "Sports", "in_curated": "", "note": "own"}
+    row = {"url": "a.com", "label": "Undefined", "also_acceptable": "Sports", "in_curated": "", "note": "Recipes"}
     write_gold(tmp_path / "gold.csv", [row], encoding="utf-8-sig")
     assert evaluate.load_gold(tmp_path / "gold.csv") == [row]
 
 
 @pytest.mark.parametrize("note, tag, expected", [
-    ("own", "own", True),
-    ("own: HR portal", "own", True),
-    ("Unknown consultancy", "own", False),
+    ("Indiana sports", "indian", False),
     ("major-app: Gmail inbox", "major-app", True),
     ("Non-English: German news magazine", "non-english", True),
     ("Indian job board", "indian", True),
@@ -96,14 +94,13 @@ def test_tags_match_whole_words_only(note, tag, expected):
 
 
 def test_gold_groups_keep_tagged_rows_apart():
-    rows = [{"note": "Recipes"}, {"note": "major-app: Gmail"}, {"note": "own: wiki"}, {"note": "Indian job board"}]
+    rows = [{"note": "Recipes"}, {"note": "major-app: Gmail"}, {"note": "Indian job board"}]
     groups = dict(evaluate.gold_groups(rows))
     assert groups == {
-        "All rows": [0, 1, 2, 3],
-        "Drafted candidates": [0, 3],
+        "All rows": [0, 1, 2],
+        "Drafted candidates": [0, 2],
         "major-app rows": [1],
-        "own rows": [2],
-        "Indian and non-English rows": [3],
+        "Indian and non-English rows": [2],
     }
 
 
@@ -124,7 +121,7 @@ def test_gold_report_covers_each_group_with_and_without_the_curated_list(capsys)
     output = capsys.readouterr().out
     assert "major-app rows, with the curated list: 1 URLs" in output
     assert "major-app rows, without the curated list: 1 URLs" in output
-    assert "own rows" not in output  # An empty group is skipped.
+    assert "Indian and non-English rows" not in output  # An empty group is skipped.
 
 
 def test_curated_overrides_only_list_real_disagreements():
@@ -150,11 +147,6 @@ with open(evaluate.GOLD_PATH, encoding="utf-8-sig", newline="") as f:
     GOLD_ROWS = list(csv.DictReader(f))
 
 
-def is_exempt(row):
-    """major-app rows are decided by the curated list, and own rows come from real browsing."""
-    return evaluate.has_tag(row, "major-app") or evaluate.has_tag(row, "own")
-
-
 def test_gold_columns_and_size():
     assert list(GOLD_ROWS[0]) == ["url", "label", "also_acceptable", "in_curated", "note"]
     assert 80 <= len(GOLD_ROWS) <= 110
@@ -169,7 +161,7 @@ def test_gold_notes_do_not_suggest_labels():
 def test_gold_avoids_every_site_seen_while_building():
     probed = (ROOT / "data" / "mapping_probe_hosts.txt").read_text(encoding="utf-8").split()
     excluded = {registered_domain(host) for host in probed}
-    hosts = [normalize_url(row["url"]) for row in GOLD_ROWS if not is_exempt(row)]
+    hosts = [normalize_url(row["url"]) for row in GOLD_ROWS if not evaluate.has_tag(row, "major-app")]  # The curated list decides those.
     assert not {registered_domain(normal[1]) for normal in hosts if normal} & excluded
 
 
@@ -185,8 +177,6 @@ def test_major_app_rows_are_decided_by_the_curated_list():
 def test_gold_in_curated_column_matches_the_list():
     curated = load_curated()
     for row in GOLD_ROWS:
-        if evaluate.has_tag(row, "own") and not row["in_curated"]:
-            continue  # Blank is fine for rows added by hand, because the evaluation does not read this column.
         normal = normalize_url(row["url"])
         in_list = bool(normal and match_curated(normal[1], normal[2], curated))
         assert row["in_curated"] == ("yes" if in_list else "no"), row["url"]

@@ -61,7 +61,7 @@ def build_lookup():
 
 def main():
     fetch_dump()
-    build_lookup()
+    write_report("build_report.txt", build_lookup)
     write_report("training_report.txt", train.main)
     evaluate.main(["validation"])
 
