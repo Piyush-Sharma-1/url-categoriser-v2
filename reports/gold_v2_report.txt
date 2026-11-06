@@ -1,0 +1,119 @@
+# Version 2 headline: new gold set (data/gold_v2_urls.csv)
+Rows where v2 with UT1 switched off differs from v1: []
+
+## All rows: 54 URLs
+score                                                   v1                    v2      always Undefined
+strict accuracy                                      0.370                 0.463                 0.074
+lenient accuracy                                     0.407                 0.500                 0.074
+coverage                                             0.389                 0.481                 0.000
+precision on covered                                 0.762                 0.808                 0.000
+precision on covered, lenient                        0.857                 0.885                 0.000
+wrong-answer rate, strict                            0.093                 0.093                 0.000
+wrong-answer rate, lenient                           0.056                 0.056                 0.000
+strict accuracy, 95% interval               0.254 to 0.504        0.337 to 0.594        0.029 to 0.176
+lenient accuracy, 95% interval              0.287 to 0.540        0.371 to 0.629        0.029 to 0.176
+Strict: both right 20, only v1 right 0, only v2 right 5, both missed 29
+Lenient: both right 22, only v1 right 0, only v2 right 5, both missed 27
+
+## v1 by method and Undefined reason: 54 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.370   0.074
+lenient accuracy           0.407   0.074
+coverage                   0.389   0.000
+precision on covered       0.762   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.056  1.000  1.000
+  curlie     0.278  0.667  0.800
+  model      0.056  1.000  1.000
+  undefined  0.611  0.121  0.121
+Undefined rate: 0.611; by reason: {'model_low_confidence': 25, 'curlie_split_votes': 1, 'curlie_deep_page_only': 4, 'curlie_unmapped': 3}
+
+## v2 by method and Undefined reason: 54 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.463   0.074
+lenient accuracy           0.500   0.074
+coverage                   0.481   0.000
+precision on covered       0.808   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.056  1.000  1.000
+  curlie     0.278  0.667  0.800
+  ut1        0.111  1.000  1.000
+  model      0.037  1.000  1.000
+  undefined  0.519  0.143  0.143
+Undefined rate: 0.519; by reason: {'model_low_confidence': 20, 'curlie_split_votes': 1, 'ut1_ambiguous': 1, 'curlie_deep_page_only': 3, 'curlie_unmapped': 3}
+
+## By label (label, rows, v1 strict right, v2 strict right, UT1 answers, UT1 answers accepted)
+Analytics                  1   0   0   0   0
+Banking & Finance          3   0   2   2   2
+Calling & Phone            2   0   0   0   0
+Chat & Messaging           2   1   1   0   0
+Design                     2   0   0   0   0
+Developer                  2   0   0   0   0
+E-commerce                 1   0   0   0   0
+Education                  2   0   0   0   0
+Email                      2   1   1   0   0
+File Sharing               2   0   1   1   1
+Gaming                     2   1   2   1   1
+Hiring & Recruitment       1   1   1   0   0
+In House Tools             2   2   2   0   0
+Internet                   2   1   1   0   0
+Job Search                 2   0   0   0   0
+Knowledge Management       2   0   0   0   0
+Lifestyle                  2   1   1   0   0
+Marketing                  1   0   0   0   0
+Meeting                    2   0   0   0   0
+Music & Videos             2   1   2   1   1
+News & Entertainment       2   1   1   0   0
+Office Apps                2   1   1   0   0
+Photos                     1   0   0   0   0
+Research & Reference       2   1   1   0   0
+Shopping                   2   1   1   0   0
+Social Media               2   1   1   1   1
+Sports                     1   1   1   0   0
+System Processes           1   1   1   0   0
+Undefined                  4   4   4   0   0
+
+## Rows UT1 decided (URL, label, also acceptable, v1, v2, evidence)
+('https://www.revolut.com/', 'Banking & Finance', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Banking & Finance (ut1; right)', ['UT1 entry: revolut.com', 'UT1 categories: bank'])
+('https://www.coinbase.com/', 'Banking & Finance', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Banking & Finance (ut1; right)', ['UT1 entry: coinbase.com', 'UT1 categories: bitcoin'])
+('https://www.sendspace.com/', 'File Sharing', '', 'Undefined (undefined, model_low_confidence; undefined)', 'File Sharing (ut1; right)', ['UT1 entry: sendspace.com', 'UT1 categories: filehosting'])
+('https://lichess.org/', 'Gaming', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Gaming (ut1; right)', ['UT1 entry: lichess.org', 'UT1 categories: games'])
+('https://www.gotomeeting.com/', 'Meeting', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, ut1_ambiguous; undefined)', ['UT1 entry: gotomeeting.com', 'UT1 categories: remote-control'])
+('https://soundcloud.com/', 'Music & Videos', '', 'Undefined (undefined, curlie_deep_page_only; undefined)', 'Music & Videos (ut1; right)', ['UT1 entry: soundcloud.com', 'UT1 categories: audio-video, radio, social_networks'])
+('https://mastodon.social/', 'Social Media', '', 'Social Media (model; right)', 'Social Media (ut1; right)', ['UT1 entry: mastodon.social', 'UT1 categories: social_networks'])
+
+## Rows either version missed on strict accuracy (URL, label, also acceptable, v1, v2)
+('https://amplitude.com/', 'Analytics', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.twilio.com/', 'Calling & Phone', 'Developer', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.dialpad.com/', 'Calling & Phone', 'Meeting', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://signal.org/', 'Chat & Messaging', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.framer.com/', 'Design', 'Developer', 'Developer (curlie; also acceptable)', 'Developer (curlie; also acceptable)')
+('https://dribbble.com/', 'Design', 'Social Media', 'Developer (curlie; wrong)', 'Developer (curlie; wrong)')
+('https://gitea.com/', 'Developer', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.docker.com/', 'Developer', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.ecwid.com/', 'E-commerce', '', 'Undefined (undefined, curlie_split_votes; undefined)', 'Undefined (undefined, curlie_split_votes; undefined)')
+('https://razorpay.com/', 'Banking & Finance', 'E-commerce', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.revolut.com/', 'Banking & Finance', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Banking & Finance (ut1; right)')
+('https://www.coinbase.com/', 'Banking & Finance', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Banking & Finance (ut1; right)')
+('https://www.duolingo.com/', 'Education', '', 'Research & Reference (curlie; wrong)', 'Research & Reference (curlie; wrong)')
+('https://nptel.ac.in/', 'Education', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.hey.com/', 'Email', '', 'Marketing (curlie; wrong)', 'Marketing (curlie; wrong)')
+('https://www.pcloud.com/', 'File Sharing', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.sendspace.com/', 'File Sharing', '', 'Undefined (undefined, model_low_confidence; undefined)', 'File Sharing (ut1; right)')
+('https://lichess.org/', 'Gaming', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Gaming (ut1; right)')
+('https://wellfound.com/', 'Job Search', 'Hiring & Recruitment', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.instahyre.com/', 'Job Search', 'Hiring & Recruitment', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.cloudflare.com/', 'Internet', 'Developer', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://roamresearch.com/', 'Knowledge Management', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.gitbook.com/', 'Knowledge Management', 'Developer', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.urbancompany.com/', 'Lifestyle', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.brevo.com/', 'Marketing', 'Email', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.gotomeeting.com/', 'Meeting', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, ut1_ambiguous; undefined)')
+('https://meet.jit.si/', 'Meeting', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://soundcloud.com/', 'Music & Videos', '', 'Undefined (undefined, curlie_deep_page_only; undefined)', 'Music & Videos (ut1; right)')
+('https://www.aljazeera.com/', 'News & Entertainment', '', 'Undefined (undefined, curlie_deep_page_only; undefined)', 'Undefined (undefined, curlie_deep_page_only; undefined)')
+('https://www.typeform.com/', 'Office Apps', 'Marketing', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.pexels.com/', 'Photos', 'Design', 'Design (curlie; also acceptable)', 'Design (curlie; also acceptable)')
+('https://www.dictionary.com/', 'Research & Reference', '', 'Undefined (undefined, curlie_deep_page_only; undefined)', 'Undefined (undefined, curlie_deep_page_only; undefined)')
+('https://www.ajio.com/', 'Shopping', '', 'Undefined (undefined, model_low_confidence; undefined)', 'Undefined (undefined, model_low_confidence; undefined)')
+('https://www.quora.com/', 'Social Media', 'Research & Reference', 'Undefined (undefined, curlie_deep_page_only; undefined)', 'Undefined (undefined, curlie_deep_page_only; undefined)')

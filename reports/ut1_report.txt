@@ -1,0 +1,115 @@
+mapping rows by status: {'unmapped': 25, 'confident': 28, 'ambiguous': 5, 'excluded': 11}
+## UT1 lists (status, domains, description, examples). Excluded lists are not read, and unmapped lists show no examples.
+adult	unmapped	4599279	Some adult site from erotic to hard pornography.	(not shown)
+agressif	unmapped	360	Some aggressive sites.	(not shown)
+ai	confident	77	Site which provides artificial intelligence	correkt[.]ai, aoyo[.]ai, kimi[.]ai, ithy[.]com, hika[.]fyi
+arjel	confident	69	ARJEL which is a french certification authority for gambling sites	betnet[.]fr, 200pourcent[.]fr, joaonline[.]fr, jeux365[.]fr, intralot[.]fr
+associations_religieuses	unmapped	1	religious_association	(not shown)
+astrology	confident	28	Astrology	magie-voyance[.]com, astro[.]femmeactuelle[.]fr, abastrologie[.]com, team[.]astromanie[.]com, astrology[.]com
+audio-video	confident	3710	Some audio and video sites.	sisaketradio[.]net, brahms[.]sourceforge[.]net, 40best[.]com, umusic[.]com, gallery[.]minitokyo[.]net
+bank	confident	6646	Online bank	sfefcu[.]org, colonialfed[.]com, bankofamerica[.]com, uhcu[.]org, fricktricountyfcu[.]org
+bitcoin	confident	1419	Sites for bitcoin mining	usebtg[.]com, bitstamp[.]net, achia[.]co, epargne-crypto[.]io, deutsche-emark[.]org
+blog	ambiguous	1497	Some blogs sites.	threeimaginarygirls[.]com, blog[.]superbhosting[.]net, aloevera-blog[.]com, durbon[.]com, cynicalsmirk[.]com
+celebrity	confident	635	Famous people, actors, and magazine which talk about them	celebritydairy[.]com, annuaire-stars-celebrites[.]com, hollywoodbackwash[.]com, gossip[.]about[.]com, friendsofcannabis[.]com
+chat	confident	268	Chat site	69[.]36[.]250[.]24, 213[.]91[.]8[.]214, jwchat[.]org, icq[.]com, easymessage[.]net
+child	excluded			
+cleaning	unmapped	174	Sites to disinfect, update and protect computers.	(not shown)
+cooking	confident	37	Sites for cooking	auboutdelalangue[.]com, 750g[.]com, cuisine-et-mets[.]com, chefnini[.]com, chaudronmagique[.]fr
+cryptojacking	unmapped	11490	Mining site by hijacking	(not shown)
+dangerous_material	unmapped	35	Sites which describe how to make bomb and some dangerous material.	(not shown)
+dating	confident	10565	Dating, matching site for single person	blacksingleschat[.]net, affdicuore[.]com, interracialcupid[.]com, frivole[.]net, elysee-2007[.]org
+ddos	unmapped	421	DDoS or Stresser Sites	(not shown)
+dialer	unmapped	4	Dialer Sites	(not shown)
+doh	unmapped	3015	Site which provides DNS over HTTP service	(not shown)
+download	ambiguous	4020	Sites which propose to download software	zonaensegurabn1-multlred-enlinea-peru[.]com, zoligomyst[.]blogspot[.]jp, zorrasreales[.]blogspot[.]li, zorracas[.]blogspot[.]ro, zonmumuefa[.]com
+drogue	unmapped	614	Sites relative to drugs.	(not shown)
+dynamic-dns	excluded			
+educational_games	ambiguous	8	educational games sites (flash and online games )	jeux[.]lulu[.]pagesperso-orange[.]fr, englishexercises[.]org, toupty[.]com, logicieleducatif[.]fr, webecolia[.]fr
+examen_pix	excluded			
+exceptions_liste_bu	excluded			
+fakenews	unmapped	1118	Site which provides fakenews	(not shown)
+filehosting	confident	941	Websites which host files (pictures, video, ...)	rapidsharing[.]com, datapickup[.]com, abrutis-videos[.]com, terabox[.]telefonica[.]com[.]ar, fotolog[.]pl
+financial	confident	472	Sites relative financial information.	kingsfinancialconsulting[.]com, bourse[.]latribune[.]fr, africanfinancials[.]com, prepaidfinancialservices[.]com, efinancialnews[.]com
+forums	confident	205	Forums site.	raulken[.]it, chat[.]geomundos[.]com, 209[.]1[.]112[.]251, youpy[.]fr, d19sfzf1[.]redplaid[.]com
+gambling	confident	95194	Gambling and games sites, casino, etc.	thr777daftarlink[.]com, best-casino-slots[.]com[.]ua, 1xbet-po8wi[.]xyz, dripcasino-art4[.]ru, cc222bet[.]com
+games	confident	33741	games sites (flash and online games )	dreameatergames[.]com, apcw[.]org, lofd[.]de, jogosonline[.]uol[.]com[.]br, infinite-craft[.]gg
+hacking	unmapped	274	Hacking sites.	(not shown)
+jobsearch	unmapped	60740	Site to looking for job	(not shown)
+lingerie	confident	193	Sites for lingerie	yse-paris[.]com, chichicastelnango[.]com, atout-lingerie[.]com, kumiko-lingerie[.]com, icone-lingerie[.]com
+liste_blanche	excluded			
+liste_bu	excluded			
+malware	unmapped	247281	Any website which deliver malware	(not shown)
+manga	confident	652	Any website related to manga, and cartoons	anitube[.]site, anilinkz[.]com, ichinofansub[.]org, geneworld[.]net, flickhost[.]com
+marketingware	unmapped	77	Very special marketing sites	(not shown)
+mixed_adult	unmapped	149	Websites which contains adult sections unstructured	(not shown)
+mobile-phone	ambiguous	50	Sites for mobile phone (rings, etc).	sonneries-sonnerie-sms[.]com, blinkogold[.]fr, 1001sms[.]com, wallsmobile[.]com, matrixmelodies[.]com
+phishing	unmapped	247390	Phishing sites (same as malware category)	(not shown)
+press	confident	4644	Any press (informational) site	cloverdalereveille[.]com, aldia[.]co[.]cr, ledgersentinel[.]com, jenningsdailynews[.]net, hippopress[.]com
+publicite	unmapped	4343	Advertisement.	(not shown)
+radio	confident	567	Internet radio sites	franceantilles[.]fr, allomusic[.]com, radio[.]aol[.]fr, pepsradio[.]fr, nrjaudio[.]fm
+reaffected	excluded			
+redirector	unmapped	132323	Some redirector sites, which are used to circumvent filtering.	(not shown)
+remote-control	ambiguous	170	site which allow remote control of user s dekstop	webex[.]fr, dameware[.]com, amazonworkspaces[.]com, logme[.]in, jumitech[.]com
+residential-proxies	unmapped	138	Site which provides residential-proxies	(not shown)
+sect	unmapped	144	Sect	(not shown)
+sexual_education	confident	15	Website which talk about sexual education, and can be misdetected as porn	blaf[.]ntic[.]qc[.]ca, bishuk[.]com, handentspannung[.]de, comment-faire-amour[.]comment-faire[.]net, macontraception[.]fr
+shopping	confident	36968	Any shopping, selling center	capetowncorp[.]com, allwr[.]com, heckbros[.]com, getgeared[.]co[.]uk, florapacifica[.]com
+shortener	unmapped	4563	URLs shortening sites	(not shown)
+social_networks	confident	715	All social networks sites	wamba[.]com, dealigg[.]com, bachelorplace[.]com, hivesocial[.]app, habbo[.]ca
+special	excluded			
+sports	confident	2362	Sports	commonwealthgames[.]ca, andersonspeedway[.]com, lequipemag[.]fr, irt-tour[.]com, hockey[.]org[.]hk
+stalkerware	unmapped	525	Site which sells spying software for everybody	(not shown)
+strict_redirector	excluded			
+strong_redirector	excluded			
+translation	confident	175	Sites for translation	translate[.]google[.]vc, translate[.]google[.]as, lexilogos[.]com, translate[.]google[.]gd, translate[.]google[.]ec
+tricheur	unmapped	53	Sites which are designed to explains cheating on exams.	(not shown)
+tricheur_pix	excluded			
+update	confident	30	Update sites for software or OS	update[.]netsarangapi[.]com, componentupdater[.]brave[.]com, amiuptodate[.]com, updates[.]discord[.]com, glarysoft[.]com
+vpn	confident	6039	VPN site	surfshark[.]com[.]au, blade12[.]newyork-rack415[.]nodes[.]gen4[.]ninja, bestvpnssh[.]com, blade24[.]paris-rack403[.]nodes[.]gen4[.]ninja, blade21[.]manila-rack402[.]nodes[.]gen4[.]ninja
+warez	unmapped	1554	Warez sites.	(not shown)
+webhosting	confident	45	Site which provides webhosting	vsble[.]me, contentstack[.]com, airopp[.]ai, grwebsite[.]fr, glitch[.]me
+webmail	confident	404	Webmail sites (hotmail like...)	velnet[.]biz, email[.]bestdresses[.]com, anymail[.]kify[.]com, webmail[.]swiftel[.]com[.]au, login[.]yahoo[.]com
+
+## What the lookup can answer, per shipped host
+UT1 answers a host when it is new or Curlie gives no category. Matching also covers each host's subdomains.
+we360_category	entries	ut1_can_answer	new	curlie_no_answer	curlie_answers	curated
+Banking & Finance	7561	6235	6176	59	1321	5
+Chat & Messaging	214	201	186	15	6	7
+Email	395	360	325	35	28	7
+File Sharing	768	748	737	11	17	3
+Gaming	128125	121407	120389	1018	6486	232
+Internet	4463	4456	4450	6	7	0
+Lifestyle	10142	10024	9936	88	118	0
+Music & Videos	3914	3513	3262	251	390	11
+News & Entertainment	5756	4432	4230	202	1320	4
+Research & Reference	250	232	229	3	10	8
+Shopping	36997	29294	28642	652	7698	5
+Social Media	776	701	653	48	65	10
+Sports	2333	1465	1417	48	866	2
+System Processes	29	25	16	9	3	1
+total	201723	183093	180648	2445	18335	295
+shipped hosts with no category: {'ut1_split_votes': 4283, 'ut1_ambiguous': 5696}
+hosts that are bare IP addresses, among those with a category: 236
+
+## Five new hosts per We360 category
+Banking & Finance	sumafcu[.]org, coinfirm[.]com, bankatharrington[.]com, wivoba[.]de, fsbdent-perham[.]com
+Chat & Messaging	teams-msedge[.]net, 64[.]92[.]173[.]122, 207[.]46[.]110[.]48, 69[.]36[.]250[.]9, 69[.]36[.]250[.]30
+Email	email[.]seznam[.]cz, apennootje[.]nl, mail[.]lessaccounting[.]com, mail[.]atlas[.]cz, loveemail[.]com
+File Sharing	uploadstation[.]com, easy-sharing[.]com, alloseven[.]com, hugedrive[.]com, gigafilehost[.]net
+Gaming	paypalcasinoutansvensklicens[.]se, ayokuliahdimalaysia[.]id, 1xbet-lc[.]xyz, sherestyra[.]de, circus-casinos[.]co[.]uk
+Internet	blade13[.]ulaanbaatar-rack402[.]nodes[.]gen4[.]ninja, blade1[.]tokyo-rack450[.]nodes[.]gen4[.]ninja, blade28[.]bucharest-rack402[.]nodes[.]gen4[.]ninja, blade23[.]stockholm-rack403[.]nodes[.]gen4[.]ninja, blade21[.]milano-rack403[.]nodes[.]gen4[.]ninja
+Lifestyle	blacktiedating[.]site, affiny[.]com, justvereenigingdating[.]co[.]za, habayeb[.]net, fiorry[.]co
+Music & Videos	thewinterolympicsband[.]com, chaines-tv[.]orange[.]fr, 62[.]4[.]85[.]238, wookafr[.]com, ip[.]sltv[.]be
+News & Entertainment	clearcreekcourant[.]com, aldiatx[.]com, magpresse[.]com, kraken[.]fr, inqnews[.]com
+Research & Reference	translate[.]google[.]ms, grok[.]com, ayesoul[.]com, translate[.]google[.]sg, thinkany[.]ai
+Shopping	patriotprintshoppe[.]com, beautycenter[.]fr, aflat[.]jp, senio[.]de, dominicwalmsley[.]com
+Social Media	connectviabooks[.]com, athlinks[.]com, habbo[.]ie, goldenline[.]pl, friendsreunited[.]co[.]uk
+Sports	usanetball[.]com, cardrona[.]co[.]nz, all4f1[.]com, hpt[.]com, golf-ontario[.]com
+System Processes	fg[.]download[.]windowsupdate[.]com[.]c[.]footprint[.]net, amiuptodate[.]com, update[.]googleapis[.]com, filter-list-downloads[.]eyeo[.]com, updates[.]bravesoftware[.]com
+
+## Hosts listed only in unmapped lists, which the lookup leaves out
+hosts: 5028634
+largest lists, where a host can be on several: [('adult', 4594632), ('phishing', 247047), ('malware', 246938), ('redirector', 130643), ('jobsearch', 60694), ('cryptojacking', 10558), ('shortener', 4553), ('publicite', 4304)]
+hosts that match a shipped parent entry, by that entry's outcome: {'ut1_ambiguous': 292803, 'ut1_split_votes': 831, 'category': 14257}
+outcomes on 10000 random hosts, with no host from a gold domain: [('model_low_confidence', 9111), ('curlie_split_votes', 351), ('ut1_ambiguous', 212), ('curlie', 107), ('curlie_unmapped', 107), ('model', 74), ('ut1', 32), ('curlie_deep_page_only', 6)]
+shipped hosts that also have a vote from an adult or malware list: 6004, with a category: 0

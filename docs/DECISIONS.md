@@ -25,8 +25,9 @@ The first step that returns a result wins:
 3. In House host rule, on the normalised host
 4. Curated list
 5. Curlie lookup
-6. Text model
-7. Undefined
+6. Extra sources (UT1), whenever earlier steps give no category
+7. Text model
+8. Undefined
 
 The curated list beats Curlie. When Curlie reaches a different category, it goes in `alternatives`.
 
@@ -172,7 +173,7 @@ Every result has all fields:
   "normalized": "normalised URL or null",
   "category": "a We360 category or Undefined",
   "confidence": 0.0,
-  "method": "rule | curated | curlie | model | undefined",
+  "method": "rule | curated | curlie | ut1 | model | undefined",
   "explanation": "one plain-English sentence",
   "evidence": ["Curlie paths, rule matched, top n-grams"],
   "alternatives": [{"category": "name", "confidence": 0.0}],
@@ -180,14 +181,14 @@ Every result has all fields:
 }
 ```
 
-- `undefined_reason` is `null` or one of `invalid_url`, `curlie_deep_page_only`, `curlie_split_votes`, `curlie_ambiguous`, `curlie_unmapped`, `model_low_confidence`, or `model_unavailable` (no model file exists, as in Phase 2).
+- `undefined_reason` is `null` or one of `invalid_url`, `curlie_deep_page_only`, `curlie_split_votes`, `curlie_ambiguous`, `curlie_unmapped`, `ut1_split_votes`, `ut1_ambiguous`, `model_low_confidence`, or `model_unavailable` (no model file exists, as in Phase 2).
 - Undefined results have confidence 0.0.
 - `alternatives` use the measured share or score, or `null` where none exists, such as a curated alternative.
 - `normalized` is `null` for System Processes results.
 
 ### K. Evaluation
 
-**Domain-separated test set:** measures the text model only, on hosts. `python -m src.evaluate test` reports accuracy, macro-F1, coverage, the most-confused category pairs, and separately the share of `unmapped` hosts the model assigns a category. Undefined counts as wrong for accuracy and macro-F1. Precision on covered hosts and no-threshold scores are also reported. Every model score appears beside the majority-class baseline, and every per-category score shows the number of test examples beside it. The same code reports on validation first, and a second test run is refused.
+**Domain-separated test set:** measures the text model only, on hosts. `python -m src.evaluate test` reports accuracy, macro-F1, coverage, the most-confused category pairs, and separately the share of `unmapped` hosts the model assigns a category. Undefined counts as wrong for accuracy and macro-F1. Precision on covered hosts and no-threshold scores are also reported. Every model score appears beside the majority-class baseline, and every per-category score shows the number of test examples beside it. The same code reports on validation first, and a second test run is refused. The one exception is the post-hoc confusion matrix under "Detailed results", made after every decision was final.
 
 **Gold set:** `data/gold_urls.csv` has the columns `url`, `label`, `also_acceptable`, `in_curated`, and `note`, and measures the whole pipeline. `also_acceptable` is empty or one other category. It reports:
 
@@ -206,6 +207,64 @@ Every result has all fields:
 **Tagged rows:** a tag is a whole word in `note`.
 
 - `major-app`: 10 realistic URLs for major workplace apps. The probe-host exclusion does not apply, because the curated list decides them, not Curlie.
+
+### O. Extra sources (version 2)
+
+Version 2 adds UT1, the Université Toulouse Capitole categorised domain lists, through a generic source design. Curlie keeps its own logic.
+
+**A source** has a loader that yields `(host, source_category)` rows and its own folder under `data/sources/`, holding `mapping.csv` and a lookup file. `src/sources.py` lists the sources, and `python -m src.build_sources` builds their lookups without touching the Curlie lookup or the model.
+
+**Mapping:** `mapping.csv` has the columns `source_category`, `we360_category`, `status`, and `note`, with one row per list. It maps whole lists, never individual domains. `status` is `confident`, `ambiguous`, `unmapped`, or:
+
+- `excluded`: the list is not about a subject. It gives no votes and is not read by the loader. `examen_pix` and `tricheur_pix` are marked by UT1 as not for general use, so they must not be used at all.
+
+**Decisions are precomputed at build time.** The build applies the 60% vote rule from Section G over each host's lists, counting each list once, with unmapped lists in the denominator. It ships only hosts with one of these outcomes:
+
+- a category, with its share as the confidence
+- `ut1_split_votes`, with the top candidates
+- `ut1_ambiguous`, with the candidates
+
+**Lookup format:** `lookup.json.gz` is a plain compressed dictionary of `{host: decision}`, like the Curlie lookup. Classification doesn't need the mapping file.
+
+**Matching:** check the host, then each parent host one label at a time, stopping at the registered domain. The first match wins, so the longest entry wins. An entry applies only to its own host and that host's subdomains, and never to sibling hosts. So `copilot.microsoft.com` says nothing about `learn.microsoft.com`, while `bankofamerica.com` covers `secure.bankofamerica.com`. An entry on a public or platform suffix, such as `blogspot.com`, labels only itself, because each site under it is its own registered domain.
+
+**Output:**
+
+- A category gives method `ut1`, with confidence = share, the UT1 category named in the explanation, and the matched entry in `evidence`.
+- `ut1_split_votes` and `ut1_ambiguous` return Undefined, and the model does not run.
+- If Curlie lists the site without a category and UT1 gives no category either, the Curlie reason stands.
+
+**Trade-off of precomputing:** no host listed only in unmapped UT1 lists is shipped, so no host listed only in adult or malware lists is shipped. There are 5,028,634 such hosts, and they used to return a UT1 Undefined. Now:
+
+- A URL on such a host reaches the model, unless an earlier step answers or a parent entry matches.
+- 14,257 of these hosts match a parent entry with a category and take that category. Another 293,634 match a parent entry with no category and stay Undefined.
+- In a random sample of 10,000 of them, 74 got a category from the model and 32 from a parent entry, so about 1% now get a category they didn't get before. Curlie answered another 107, as before, and the other 9,787 stayed Undefined.
+
+In return, the lookup is 1.3 MB and needs no special format. `reports/ut1_build_report.txt` and `reports/ut1_report.txt` record the counts in this section.
+
+**Mixed votes:** a host that is also on a mapped list is still shipped, and its record names all its lists, because the vote needs them. 6,004 shipped hosts have a vote from an adult or malware list this way. None of them gets a category, so they return Undefined. They stay because removing them would let the model guess on hosts that are partly flagged as adult or malware.
+
+**Subdomains inherit:** a subdomain with no entry of its own takes its parent's UT1 decision, and 14,257 of the hosts above take a category this way. The curated list works the same way: `shopify.com` covers every store subdomain, and a longer entry such as `mail.google.com` takes priority. So a phishing subdomain on a shopping site gets Shopping from its parent. This is accepted, because detecting malicious subdomains is a security task, outside a categoriser's job.
+
+**Lookup only:** UT1 is never model training data. The model, Curlie lookup, taxonomy map, curated list, and threshold are unchanged from version 1.
+
+**Licence:** the UT1 lookup is a separate file under CC BY-SA 4.0 and is never merged with the Curlie lookup. `data/sources/ut1/README.md` holds the notice, attribution, source link, licence link, and what was changed.
+
+**Gold v2:** `data/gold_v2_urls.csv` is version 2's headline. It has the same columns as the original gold set, with the note `v2-new` on every row. It has 54 URLs, and none of them is in the curated list. Of the 56 rows given, 2 were dropped and not replaced, because no row may be on an original gold domain, a probe host, or a host seen while building version 2:
+
+- `https://www.semrush.com/` is a probe host.
+- `https://www.gov.uk/` appeared as a UT1 example in the analysis output during V2-1.
+
+A host counted as seen if it appeared in a project text file other than the curated list, or in the output from V2-1 and V2-2. Curated rows would have been allowed, as they are in the original set, but none came up.
+
+**Comparing the versions:** `python -m src.evaluate gold-v2` scores version 2 beside version 1 on the new set. `python -m src.evaluate gold` does the same on the original set, which is post-hoc for version 2, and `reports/gold_report.txt` stays as the record of version 1's run.
+
+- Version 1's answers come from the frozen version 1 folder through `scripts/classify_with_v1.py`, which saves them in `reports/`.
+- Each report confirms that version 2 with UT1 switched off gives the same answers as version 1.
+- Intervals are 95% Wilson intervals, which behave on small samples.
+- A wrong answer gives a category. On the strict rate, that category isn't the label, and on the lenient rate, it isn't the label or `also_acceptable`. Undefined is never a wrong answer, though it still counts against accuracy unless the label is Undefined.
+
+**Test-set results stay valid:** they measure the text model alone, and the model file is byte-identical to version 1's.
 
 ### L. Language limitation
 
@@ -311,9 +370,18 @@ The test set has 37,563 labelled hosts and 29,940 unmapped hosts, and validation
 | Social Media | 24 | 0.071 | 0.038 | 0.000 | 27 | 0.133 | 0.078 | 0.000 |
 | Sports | 4,220 | 0.189 | 0.578 | 0.000 | 4,220 | 0.171 | 0.574 | 0.000 |
 
+### Test confusion matrices (post-hoc)
+
+**Post-hoc: this is a second scoring of the test split,** made at the project owner's request after every decision was final, and nothing changed as a result. These come from `python -m scripts.confusion_matrix`, with the matrices in `reports/test_confusion_threshold_0.60.csv` and `reports/test_confusion_no_threshold.csv`. They reproduce the saved test report: every overall score, all 52 per-category F1 values, and all 20 listed pairs. The model file is byte-identical, so they apply to both versions.
+
+- **No threshold:** 14,799 of the 37,563 hosts are right. Small categories are heavily over-predicted, probably because of the balanced class weights. Analytics has 51 true hosts but receives 566 answers, so its precision is 0.021, and Social Media has 24 but receives 240, also at 0.021.
+- **The largest error source is Lifestyle:** of its 8,822 hosts, 2,805 are right, 1,078 go to Research & Reference, and 1,006 go to Shopping.
+- **Threshold 0.60:** the model answers 2,708 hosts, with 2,217 right and 491 wrong, and 34,855 are Undefined. The largest error is Research & Reference answered as Education, which is 170 of the 491.
+- **Two large categories almost vanish at the threshold:** the model never answers Shopping (5,848 hosts) and answers Lifestyle only 7 times (8,822 hosts), so the threshold's coverage comes from other categories.
+
 ### Gold results: the whole pipeline
 
-These are **gold results** from `python -m src.evaluate gold`, saved in `reports/gold_report.txt`. Strict accuracy uses `label` only, and lenient accuracy also accepts `also_acceptable`. Each drafted row moves a score by about 1.3 points, so small differences mean little. High scores on curated rows are weak evidence, because the list and the labels both rest on human or AI knowledge of those sites.
+These are version 1's **gold results**, from its own `python -m src.evaluate gold`, saved in `reports/gold_report.txt`. Strict accuracy uses `label` only, and lenient accuracy also accepts `also_acceptable`. Each drafted row moves a score by about 1.3 points, so small differences mean little. High scores on curated rows are weak evidence, because the list and the labels both rest on human or AI knowledge of those sites.
 
 | Group | Curated list | URLs | Strict accuracy | Lenient accuracy | Coverage | Precision on covered |
 |---|---|---:|---:|---:|---:|---:|
@@ -354,6 +422,87 @@ Undefined rate by reason, as row counts:
 The curated list overrode a Curlie answer on no gold row. Of the 21 rows missed on strict accuracy, 20 returned Undefined and 1 gave a wrong category (`tiktok.com` as Music & Videos, which `also_acceptable` allows). The gold report lists all 21.
 
 **No post-hoc changes to results:** no map rows, curated rows, or thresholds changed after these results were seen, and the checksums of the model, lookup, taxonomy map, and curated list matched before and after both runs. Later code changes, which change no reported number, are listed in the README under "Changes after the test run".
+
+### Version 2 gold results: new gold set
+
+These come from `python -m src.evaluate gold-v2`, saved in `reports/gold_v2_report.txt`, which also lists every row either version missed. Each row moves a score by about 1.9 points. No code, mapping, lookup, curated row, or threshold changed after these results were seen. An AI model drafted the set after seeing UT1's categories, so its authorship may favour UT1, and this isn't an independent test.
+
+| Score | Version 1 | Version 2 | Baseline (always Undefined) |
+|---|---:|---:|---:|
+| Strict accuracy | 0.370 | 0.463 | 0.074 |
+| Strict accuracy, 95% interval | 0.254 to 0.504 | 0.337 to 0.594 | 0.029 to 0.176 |
+| Lenient accuracy | 0.407 | 0.500 | 0.074 |
+| Lenient accuracy, 95% interval | 0.287 to 0.540 | 0.371 to 0.629 | 0.029 to 0.176 |
+| Coverage | 0.389 | 0.481 | 0.000 |
+| Precision on covered, strict | 0.762 | 0.808 | 0.000 |
+| Precision on covered, lenient | 0.857 | 0.885 | 0.000 |
+| Wrong-answer rate, strict | 0.093 | 0.093 | 0.000 |
+| Wrong-answer rate, lenient | 0.056 | 0.056 | 0.000 |
+
+On strict accuracy, both versions got 20 rows right and both missed 29. Only version 2 got 5 right, and only version 1 got none right. An exact two-sided sign test on those 5 gains and 0 losses gives p = 2 × 0.5^5 = 0.0625, so the gain is suggestive but not conclusive. Version 2 with UT1 switched off gives the same answers as version 1 on all 54 rows.
+
+By method:
+
+| Method | Version 1 share | Strict | Lenient | Version 2 share | Strict | Lenient |
+|---|---:|---:|---:|---:|---:|---:|
+| Rule | 0.056 | 1.000 | 1.000 | 0.056 | 1.000 | 1.000 |
+| Curlie | 0.278 | 0.667 | 0.800 | 0.278 | 0.667 | 0.800 |
+| UT1 | Not used | | | 0.111 | 1.000 | 1.000 |
+| Model | 0.056 | 1.000 | 1.000 | 0.037 | 1.000 | 1.000 |
+| Undefined | 0.611 | 0.121 | 0.121 | 0.519 | 0.143 | 0.143 |
+
+Undefined by reason, as row counts:
+
+| Version | Undefined rate | `model_low_confidence` | `curlie_deep_page_only` | `curlie_unmapped` | `curlie_split_votes` | `ut1_ambiguous` |
+|---|---:|---:|---:|---:|---:|---:|
+| 1 | 0.611 | 25 | 4 | 3 | 1 | 0 |
+| 2 | 0.519 | 20 | 3 | 3 | 1 | 1 |
+
+Every row UT1 decided:
+
+| Host | Label | Version 1 | Version 2 | UT1 lists |
+|---|---|---|---|---|
+| `revolut.com` | Banking & Finance | Undefined | Banking & Finance | `bank` |
+| `coinbase.com` | Banking & Finance | Undefined | Banking & Finance | `bitcoin` |
+| `sendspace.com` | File Sharing | Undefined | File Sharing | `filehosting` |
+| `lichess.org` | Gaming | Undefined | Gaming | `games` |
+| `soundcloud.com` | Music & Videos | Undefined | Music & Videos | `audio-video`, `radio`, `social_networks` |
+| `mastodon.social` | Social Media | Social Media, from the model | Social Media | `social_networks` |
+| `gotomeeting.com` | Meeting | Undefined | Undefined (`ut1_ambiguous`) | `remote-control` |
+
+All 5 wrong answers on strict accuracy come from Curlie, in both versions: `dribbble.com`, `duolingo.com`, and `hey.com` are wrong on both rates, and `framer.com` and `pexels.com` are wrong on the strict rate only. Of these, only `hey.com` was looked up in the dump, and nothing changed as a result. Its one listing, `http://www.hey.com/`, is titled "Hey!" and describes YouTube channel management and video marketing, under `Business/Marketing_and_Advertising/Marketing_Support_Services/Media/Video`. That isn't today's HEY email service, so the listing appears stale.
+
+**Which categories UT1 helps:** 14 We360 categories have a confident UT1 list, and 14 don't. `reports/gold_v2_report.txt` has the counts per label.
+
+| We360 categories | Rows | Version 1 right | Version 2 right |
+|---|---:|---:|---:|
+| With a confident UT1 list | 27 | 12 | 17 |
+| With no confident UT1 list | 23 | 4 | 4 |
+| Label is Undefined | 4 | 4 | 4 |
+
+- **It helps** where a web-filtering list has a topic: Banking & Finance gained 2 rows, and File Sharing, Gaming, and Music & Videos gained 1 each. The original set adds News & Entertainment.
+- **It doesn't help** the 14 categories with no confident list: Analytics, Calling & Phone, Design, Developer, E-commerce, Education, Hiring & Recruitment, In House Tools, Job Search, Knowledge Management, Marketing, Meeting, Office Apps, and Photos. These hold most of the workplace software that version 1 misses. The 4 rows right on the new set came from the rules, Curlie, or the model, not UT1.
+- **Coverage is patchy where a list exists:** UT1 gave no answer for `signal.org`, `pcloud.com`, `razorpay.com`, `ajio.com`, or `urbancompany.com`.
+- **The lists are lopsided:** Gaming has 63.5% of the hosts with a category and Shopping has 18.3%, while System Processes has 29 hosts and Chat & Messaging has 214 (`reports/ut1_report.txt`).
+
+**The new set is harder than the original for both versions**, so version 1's 0.370 here shouldn't be compared with its 0.720 there. The new set has no curated rows, where the original drafted group has 13, and 4 rows labelled Undefined, where that group has 15. Curlie's answers are also weaker: 10 of 15 right here, against 21 of 22 there. So version 1's precision of 0.975 may be optimistic, though some of these rows are judgement calls on labels.
+
+### Version 2 gold results: original gold set (post-hoc)
+
+**Post-hoc: seen while building v2.** These come from `python -m src.evaluate gold`, saved in `reports/gold_posthoc_report.txt`. Version 1's column reproduces its reported scores exactly, and `reports/gold_report.txt` is unchanged.
+
+| Group | URLs | Strict v1 | Strict v2 | Lenient v1 | Lenient v2 | Coverage v1 | Coverage v2 | Precision v1 | Precision v2 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Drafted candidates | 75 | 0.720 | 0.733 | 0.733 | 0.747 | 0.533 | 0.547 | 0.975 | 0.976 |
+| major-app rows | 10 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Indian and non-English rows | 14 | 0.643 | 0.714 | 0.643 | 0.714 | 0.571 | 0.643 | 1.000 | 1.000 |
+| All rows | 85 | 0.753 | 0.765 | 0.765 | 0.776 | 0.588 | 0.600 | 0.980 | 0.980 |
+
+The 95% intervals on strict accuracy for the drafted group are 0.610 to 0.809 and 0.624 to 0.820. For all rows they are 0.652 to 0.832 and 0.664 to 0.842.
+
+UT1 decided 2 rows. `spiegel.de` went from Undefined to News & Entertainment, through the `press` list, and `fastmail.com` moved from the model to UT1 with the same answer. No row got worse. Both versions still miss 20 rows, and 15 of them are in categories with no confident UT1 list.
+
+The gain here is 1 row in 85, and on the new set it's 5 in 54. The original set wasn't built with UT1 in view, and the new one was drafted after seeing UT1's categories, so the true gain could well be nearer the smaller figure.
 
 ### Model training
 

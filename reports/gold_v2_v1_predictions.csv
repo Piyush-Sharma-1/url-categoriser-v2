@@ -1,0 +1,55 @@
+url,category,method,undefined_reason,confidence
+https://amplitude.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.twilio.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.dialpad.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.rocket.chat/,Chat & Messaging,model,,0.697
+https://signal.org/,Undefined,undefined,model_low_confidence,0.0
+https://www.framer.com/,Developer,curlie,,1.0
+https://dribbble.com/,Developer,curlie,,1.0
+https://gitea.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.docker.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.ecwid.com/,Undefined,undefined,curlie_split_votes,0.0
+https://razorpay.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.revolut.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.coinbase.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.duolingo.com/,Research & Reference,curlie,,1.0
+https://nptel.ac.in/,Undefined,undefined,model_low_confidence,0.0
+https://www.gmx.com/,Email,curlie,,1.0
+https://www.hey.com/,Marketing,curlie,,1.0
+https://www.pcloud.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.sendspace.com/,Undefined,undefined,model_low_confidence,0.0
+https://lichess.org/,Undefined,undefined,model_low_confidence,0.0
+https://www.kongregate.com/,Gaming,curlie,,1.0
+https://recruitee.com/,Hiring & Recruitment,model,,0.732
+https://wellfound.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.instahyre.com/,Undefined,undefined,model_low_confidence,0.0
+http://192.168.1.10/admin,In House Tools,rule,,1.0
+https://jira.acme.corp/browse/OPS-12,In House Tools,rule,,1.0
+https://www.startpage.com/,Internet,curlie,,1.0
+https://www.cloudflare.com/,Undefined,undefined,model_low_confidence,0.0
+https://roamresearch.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.gitbook.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.booking.com/,Lifestyle,curlie,,1.0
+https://www.urbancompany.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.brevo.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.gotomeeting.com/,Undefined,undefined,model_low_confidence,0.0
+https://meet.jit.si/,Undefined,undefined,model_low_confidence,0.0
+https://soundcloud.com/,Undefined,undefined,curlie_deep_page_only,0.0
+https://www.dailymotion.com/,Music & Videos,curlie,,1.0
+https://www.aljazeera.com/,Undefined,undefined,curlie_deep_page_only,0.0
+https://indianexpress.com/,News & Entertainment,curlie,,1.0
+https://www.airtable.com/,Office Apps,curlie,,1.0
+https://www.typeform.com/,Undefined,undefined,model_low_confidence,0.0
+https://www.pexels.com/,Design,curlie,,1.0
+https://www.dictionary.com/,Undefined,undefined,curlie_deep_page_only,0.0
+https://arxiv.org/,Research & Reference,curlie,,1.0
+https://www.ikea.com/,Shopping,curlie,,1.0
+https://www.ajio.com/,Undefined,undefined,model_low_confidence,0.0
+https://mastodon.social/,Social Media,model,,0.893
+https://www.quora.com/,Undefined,undefined,curlie_deep_page_only,0.0
+https://www.espncricinfo.com/,Sports,curlie,,1.0
+edge://settings/,System Processes,rule,,1.0
+https://www.unesco.org/,Undefined,undefined,curlie_unmapped,0.0
+https://www.siemens.com/,Undefined,undefined,curlie_unmapped,0.0
+https://www.ups.com/,Undefined,undefined,curlie_unmapped,0.0
+https://k9xq7mz.org/,Undefined,undefined,model_low_confidence,0.0

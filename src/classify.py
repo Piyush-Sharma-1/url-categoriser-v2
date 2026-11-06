@@ -7,6 +7,7 @@ from src.curlie_data import ROOT, load_map
 from src.lookup import curlie_lookup, load_lookup
 from src.model import load_model, predict
 from src.normalize import normalize_url, parse_ip, system_scheme
+from src.sources import SOURCES, source_decision
 
 CURATED_PATH = ROOT / "data" / "known_domains.csv"
 IN_HOUSE_SUFFIXES = (".local", ".internal", ".corp", ".lan", ".intranet")
@@ -16,6 +17,8 @@ UNDEFINED_TEXT = {
     "curlie_split_votes": "No category reaches 60% of Curlie's homepage listings for this site.",
     "curlie_ambiguous": "Curlie lists this site under a subject that fits more than one category.",
     "curlie_unmapped": "Curlie lists this site under a subject with no matching We360 category.",
+    "ut1_split_votes": "No category reaches 60% of the UT1 lists that contain this site.",
+    "ut1_ambiguous": "UT1 lists this site under a category that fits more than one We360 category.",
     "model_low_confidence": "Curlie does not list this site, and the text model is not confident enough.",
     "model_unavailable": "Curlie does not list this site, and no text model is available.",
 }
@@ -105,6 +108,14 @@ def curlie_result(url, normalized, curlie):
     return make_result(url, normalized, curlie["category"], curlie["confidence"], "curlie", explanation, curlie["evidence"], curlie["alternatives"])
 
 
+def source_result(url, normalized, decision):
+    if decision["reason"]:
+        return undefined(url, normalized, decision["reason"], decision["evidence"], decision["alternatives"])
+    label, entry, category = decision["label"], decision["entry"], decision["category"]
+    explanation = f"{label} lists {entry} in its {decision['source_category']} category, which maps to {category}."
+    return make_result(url, normalized, category, decision["confidence"], decision["method"], explanation, decision["evidence"], decision["alternatives"])
+
+
 def model_result(url, normalized, host):
     model = load_model()
     if model is None:
@@ -116,7 +127,7 @@ def model_result(url, normalized, host):
     return make_result(url, normalized, category, score, "model", explanation, evidence, alternatives)
 
 
-def classify(url, use_curated=True):
+def classify(url, use_curated=True, sources=SOURCES):
     """Return the category and provenance for one URL (docs/DECISIONS.md, Section J). The evaluation turns the curated list off."""
     scheme = system_scheme(url)
     if scheme:
@@ -136,6 +147,20 @@ def classify(url, use_curated=True):
     row = match_curated(host, path, curated) if use_curated else None
     if row:
         return curated_result(url, normalized, row, curlie)
+    if curlie and curlie["category"]:
+        return curlie_result(url, normalized, curlie)
+
+    # Extra sources answer whenever earlier steps give no category.
+    undecided = None
+    for source in sources:
+        decision = source_decision(host, source)
+        if decision and decision["category"]:
+            return source_result(url, normalized, decision)
+        undecided = undecided or decision
+
+    # A site that a source lists without a category stays Undefined, and the model does not guess.
     if curlie:
         return curlie_result(url, normalized, curlie)
+    if undecided:
+        return source_result(url, normalized, undecided)
     return model_result(url, normalized, host)

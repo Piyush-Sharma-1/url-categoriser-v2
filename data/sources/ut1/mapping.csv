@@ -1,0 +1,70 @@
+source_category,we360_category,status,note
+adult,,unmapped,Filtering category: adult content
+agressif,,unmapped,Filtering category: hate and aggressive sites
+ai,Research & Reference,confident,Judgement: no We360 category fits AI assistants. Matches the choice in the curated list
+arjel,Gaming,confident,French licensed gambling sites. Gaming includes gambling
+associations_religieuses,,unmapped,Religious associations. Curlie's religion branch is also unmapped
+astrology,Lifestyle,confident,Personal-interest sites
+audio-video,Music & Videos,confident,Audio and video sites
+bank,Banking & Finance,confident,Online banks
+bitcoin,Banking & Finance,confident,Judgement: described as mining sites but the examples include exchanges
+blog,Social Media|News & Entertainment,ambiguous,Mixes blog platforms with individual editorial blogs
+celebrity,News & Entertainment,confident,Celebrity news and magazines
+chat,Chat & Messaging,confident,Chat sites
+child,,excluded,Allow-list of sites suitable for young children rather than a subject
+cleaning,,unmapped,Security vendors and removal tools. Curlie's security branch is also unmapped
+cooking,Lifestyle,confident,Cooking sites
+cryptojacking,,unmapped,Filtering category: hijacked mining
+dangerous_material,,unmapped,Filtering category: weapons and dangerous materials
+dating,Lifestyle,confident,Dating sites. Matches Curlie's Society/Relationships row
+ddos,,unmapped,Filtering category: attack services
+dialer,,unmapped,Filtering category: dialer sites
+doh,,unmapped,Network infrastructure hosts rather than sites people use
+download,File Sharing|Internet,ambiguous,Software download sites fit neither category clearly
+drogue,,unmapped,Filtering category: drugs
+dynamic-dns,,excluded,Hosts unrelated personal sites so the list is not about a subject
+educational_games,Education|Gaming,ambiguous,Learning games fit both categories
+examen_pix,,excluded,Marked by UT1 as reserved for a French exam and not for general use. Must not be used
+exceptions_liste_bu,,excluded,Operational exception list rather than a subject
+fakenews,,unmapped,Filtering category: a quality judgement rather than a subject
+filehosting,File Sharing,confident,File hosting sites
+financial,Banking & Finance,confident,Financial information and services
+forums,Social Media,confident,Judgement: forums are nearest to Curlie's Online_Communities row
+gambling,Gaming,confident,Gambling sites. Gaming includes gambling
+games,Gaming,confident,Game sites
+hacking,,unmapped,Filtering category: hacking sites
+jobsearch,,unmapped,Half of its hosts also appear on the malware or phishing lists
+lingerie,Shopping,confident,Judgement: consumer lingerie stores in a list kept for filtering
+liste_blanche,,excluded,Allow-list of institutions rather than a subject
+liste_bu,,excluded,French library list rather than a subject
+malware,,unmapped,Filtering category: malware
+manga,News & Entertainment,confident,Manga and cartoons. Matches Curlie's Arts/Animation and Arts/Comics rows
+marketingware,,unmapped,Filtering category: the examples look like tracking and spam hosts
+mixed_adult,,unmapped,Filtering category: sites with unstructured adult sections
+mobile-phone,Calling & Phone|Lifestyle,ambiguous,Ringtones and phone extras fit neither category clearly
+phishing,,unmapped,Filtering category: phishing
+press,News & Entertainment,confident,News outlets
+publicite,,unmapped,Ad-server hosts are background requests rather than sites people work on. Marketing means marketing tools
+radio,Music & Videos,confident,Internet radio. Matches Curlie's Arts/Radio row
+reaffected,,excluded,Domains that changed owner so the list is not about a subject
+redirector,,unmapped,Filtering category: sites used to get around filters
+remote-control,Office Apps|Developer,ambiguous,Remote desktop tools serve both office and technical work
+residential-proxies,,unmapped,Filtering category: residential proxies
+sect,,unmapped,Filtering category: sects. Curlie's religion branch is also unmapped
+sexual_education,Lifestyle,confident,Judgement: health information. Matches Curlie's Health row
+shopping,Shopping,confident,Consumer stores
+shortener,,unmapped,Redirect services so the destination is unknown
+social_networks,Social Media,confident,Social networks
+special,,excluded,Operational list with one entry and no description
+sports,Sports,confident,Sports sites
+stalkerware,,unmapped,Filtering category: covert monitoring software
+strict_redirector,,excluded,Same entries as redirector
+strong_redirector,,excluded,Same entries as redirector
+translation,Research & Reference,confident,Translation services. Matches the curated list's translate.google.com row
+tricheur,,unmapped,Filtering category: exam cheating
+tricheur_pix,,excluded,Marked by UT1 as not for general use. Must not be used
+update,System Processes,confident,Judgement: software and OS update hosts. The fixed definition covers browser and OS addresses
+vpn,Internet,confident,Judgement: VPN sites and servers. Matches Curlie's Proxying_and_Filtering row
+warez,,unmapped,Filtering category: pirated content
+webhosting,Internet,confident,Web hosting
+webmail,Email,confident,Webmail sites

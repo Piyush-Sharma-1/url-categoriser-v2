@@ -1,0 +1,55 @@
+url,label,also_acceptable,in_curated,note
+https://amplitude.com/,Analytics,,no,v2-new
+https://www.twilio.com/,Calling & Phone,Developer,no,v2-new
+https://www.dialpad.com/,Calling & Phone,Meeting,no,v2-new
+https://www.rocket.chat/,Chat & Messaging,,no,v2-new
+https://signal.org/,Chat & Messaging,,no,v2-new
+https://www.framer.com/,Design,Developer,no,v2-new
+https://dribbble.com/,Design,Social Media,no,v2-new
+https://gitea.com/,Developer,,no,v2-new
+https://www.docker.com/,Developer,,no,v2-new
+https://www.ecwid.com/,E-commerce,,no,v2-new
+https://razorpay.com/,Banking & Finance,E-commerce,no,v2-new
+https://www.revolut.com/,Banking & Finance,,no,v2-new
+https://www.coinbase.com/,Banking & Finance,,no,v2-new
+https://www.duolingo.com/,Education,,no,v2-new
+https://nptel.ac.in/,Education,,no,v2-new
+https://www.gmx.com/,Email,,no,v2-new
+https://www.hey.com/,Email,,no,v2-new
+https://www.pcloud.com/,File Sharing,,no,v2-new
+https://www.sendspace.com/,File Sharing,,no,v2-new
+https://lichess.org/,Gaming,,no,v2-new
+https://www.kongregate.com/,Gaming,,no,v2-new
+https://recruitee.com/,Hiring & Recruitment,,no,v2-new
+https://wellfound.com/,Job Search,Hiring & Recruitment,no,v2-new
+https://www.instahyre.com/,Job Search,Hiring & Recruitment,no,v2-new
+http://192.168.1.10/admin,In House Tools,,no,v2-new
+https://jira.acme.corp/browse/OPS-12,In House Tools,Developer,no,v2-new
+https://www.startpage.com/,Internet,,no,v2-new
+https://www.cloudflare.com/,Internet,Developer,no,v2-new
+https://roamresearch.com/,Knowledge Management,,no,v2-new
+https://www.gitbook.com/,Knowledge Management,Developer,no,v2-new
+https://www.booking.com/,Lifestyle,Shopping,no,v2-new
+https://www.urbancompany.com/,Lifestyle,,no,v2-new
+https://www.brevo.com/,Marketing,Email,no,v2-new
+https://www.gotomeeting.com/,Meeting,,no,v2-new
+https://meet.jit.si/,Meeting,,no,v2-new
+https://soundcloud.com/,Music & Videos,,no,v2-new
+https://www.dailymotion.com/,Music & Videos,,no,v2-new
+https://www.aljazeera.com/,News & Entertainment,,no,v2-new
+https://indianexpress.com/,News & Entertainment,,no,v2-new
+https://www.airtable.com/,Office Apps,Knowledge Management,no,v2-new
+https://www.typeform.com/,Office Apps,Marketing,no,v2-new
+https://www.pexels.com/,Photos,Design,no,v2-new
+https://www.dictionary.com/,Research & Reference,,no,v2-new
+https://arxiv.org/,Research & Reference,,no,v2-new
+https://www.ikea.com/,Shopping,,no,v2-new
+https://www.ajio.com/,Shopping,,no,v2-new
+https://mastodon.social/,Social Media,,no,v2-new
+https://www.quora.com/,Social Media,Research & Reference,no,v2-new
+https://www.espncricinfo.com/,Sports,News & Entertainment,no,v2-new
+edge://settings/,System Processes,,no,v2-new
+https://www.unesco.org/,Undefined,Research & Reference,no,v2-new
+https://www.siemens.com/,Undefined,,no,v2-new
+https://www.ups.com/,Undefined,,no,v2-new
+https://k9xq7mz.org/,Undefined,,no,v2-new

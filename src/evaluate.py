@@ -2,10 +2,14 @@
 
 python -m src.evaluate validation   Model scores on validation. Safe to repeat.
 python -m src.evaluate test         Model scores on the test set. Runs once only.
-python -m src.evaluate gold         Whole-pipeline scores on the labelled gold set.
+python -m src.evaluate gold-v2      Version 2 beside version 1 on the new gold set. This is version 2's headline.
+python -m src.evaluate gold         Version 2 beside version 1 on the original gold set, which is post-hoc for version 2.
+
+reports/gold_report.txt stays as the record of version 1's run, so neither gold command writes to it.
 """
 import collections
 import csv
+import math
 import re
 import sys
 
@@ -19,8 +23,10 @@ from src.reporting import REPORTS, write_report
 from src.train import UNMAPPED, load_examples, score_rows, split_examples
 
 GOLD_PATH = ROOT / "data" / "gold_urls.csv"
+GOLD_V2_PATH = ROOT / "data" / "gold_v2_urls.csv"
 TEST_REPORT = "test_report.txt"
 UNDEFINED = "Undefined"
+METHODS = ("rule", "curated", "curlie", "ut1", "model", "undefined")
 
 
 def overall_scores(labels, predictions):
@@ -136,7 +142,7 @@ def report_pipeline(title, rows, results):
         print(f"{metric:<22}{value:>10.3f}   {baseline_scores[metric]:.3f}")
 
     print("Per method (share of rows, strict accuracy, lenient accuracy):")
-    for method in ("rule", "curated", "curlie", "model", "undefined"):
+    for method in METHODS:
         chosen = np.array([result["method"] == method for result in results])
         if chosen.any():
             method_scores = gold_scores(labels[chosen], also_acceptable[chosen], predictions[chosen])
@@ -195,6 +201,136 @@ def report_gold(rows):
         print(wrong)
 
 
+def wilson_interval(share, total, z=1.96):
+    """Return the 95% Wilson interval for a share. It stays between 0 and 1 and behaves on small samples."""
+    spread = z * z / total
+    centre = (share + spread / 2) / (1 + spread)
+    margin = z * math.sqrt(share * (1 - share) / total + spread / (4 * total)) / (1 + spread)
+    return max(0.0, centre - margin), min(1.0, centre + margin)
+
+
+def answer_status(row, category):
+    """Return how one answer compares with its gold row."""
+    if category == row["label"]:
+        return "right"
+    if category == row["also_acceptable"]:
+        return "also acceptable"
+    return "undefined" if category == UNDEFINED else "wrong"
+
+
+def answer_text(row, result):
+    reason = f", {result['undefined_reason']}" if result["undefined_reason"] else ""
+    return f"{result['category']} ({result['method']}{reason}; {answer_status(row, result['category'])})"
+
+
+def version_scores(rows, answers):
+    """Return one version's scores. A wrong answer gives a category that the gold row doesn't accept."""
+    labels = np.array([row["label"] for row in rows])
+    also_acceptable = np.array([row["also_acceptable"] for row in rows])
+    predictions = np.array(answers)
+    covered = predictions != UNDEFINED
+    lenient_right = (labels == predictions) | (also_acceptable == predictions)
+    scores = gold_scores(labels, also_acceptable, predictions)
+    scores["precision on covered, lenient"] = float(lenient_right[covered].mean()) if covered.any() else 0.0
+    scores["wrong-answer rate, strict"] = float((covered & (labels != predictions)).mean())
+    scores["wrong-answer rate, lenient"] = float((covered & ~lenient_right).mean())
+    return scores
+
+
+def report_versions(title, rows, versions):
+    """Print each version's scores beside the baseline, with 95% intervals, then how their answers pair up."""
+    majority, baseline = majority_baseline(np.array([row["label"] for row in rows]))
+    columns = {name: version_scores(rows, [result["category"] for result in results]) for name, results in versions.items()}
+    columns[f"always {majority}"] = version_scores(rows, baseline.tolist())
+    print(f"\n## {title}: {len(rows)} URLs")
+    print(f"{'score':<36}" + "".join(f"{name:>22}" for name in columns))
+    for metric in next(iter(columns.values())):
+        print(f"{metric:<36}" + "".join(f"{scores[metric]:>22.3f}" for scores in columns.values()))
+    for metric in ("strict accuracy", "lenient accuracy"):
+        intervals = [wilson_interval(scores[metric], len(rows)) for scores in columns.values()]
+        print(f"{metric + ', 95% interval':<36}" + "".join(f"{f'{low:.3f} to {high:.3f}':>22}" for low, high in intervals))
+
+    first, second = versions.values()
+    for name, accepted in (("Strict", ("right",)), ("Lenient", ("right", "also acceptable"))):
+        pairs = collections.Counter(
+            (answer_status(row, old["category"]) in accepted, answer_status(row, new["category"]) in accepted)
+            for row, old, new in zip(rows, first, second)
+        )
+        print(f"{name}: both right {pairs[(True, True)]}, only v1 right {pairs[(True, False)]}, "
+              f"only v2 right {pairs[(False, True)]}, both missed {pairs[(False, False)]}")
+
+
+def report_by_label(rows, versions):
+    """Print, per gold label, how many rows each version gets right and what UT1 answered."""
+    first, second = versions.values()
+    print("\n## By label (label, rows, v1 strict right, v2 strict right, UT1 answers, UT1 answers accepted)")
+    for label in sorted({row["label"] for row in rows}):
+        chosen = [i for i, row in enumerate(rows) if row["label"] == label]
+        right = [sum(results[i]["category"] == label for i in chosen) for results in (first, second)]
+        ut1 = [i for i in chosen if second[i]["method"] == "ut1"]
+        accepted = sum(answer_status(rows[i], second[i]["category"]) != "wrong" for i in ut1)
+        print(f"{label:<24}{len(chosen):>4}{right[0]:>4}{right[1]:>4}{len(ut1):>4}{accepted:>4}")
+
+
+def report_ut1_rows(rows, versions):
+    """Print every row that UT1 decided, including the ones where it stopped the model with Undefined."""
+    first, second = versions.values()
+    print("\n## Rows UT1 decided (URL, label, also acceptable, v1, v2, evidence)")
+    for row, old, new in zip(rows, first, second):
+        if new["method"] == "ut1" or (new["undefined_reason"] or "").startswith("ut1_"):
+            print((row["url"], row["label"], row["also_acceptable"], answer_text(row, old), answer_text(row, new), new["evidence"]))
+
+
+def report_missed_rows(rows, versions):
+    """Print every row that either version missed on strict accuracy."""
+    first, second = versions.values()
+    print("\n## Rows either version missed on strict accuracy (URL, label, also acceptable, v1, v2)")
+    for row, old, new in zip(rows, first, second):
+        if old["category"] != row["label"] or new["category"] != row["label"]:
+            print((row["url"], row["label"], row["also_acceptable"], answer_text(row, old), answer_text(row, new)))
+
+
+def load_predictions(name, rows):
+    """Return version 1's saved answers in gold-row order. scripts/classify_with_v1.py writes them."""
+    with open(REPORTS / name, encoding="utf-8", newline="") as f:
+        saved = {row["url"]: {**row, "undefined_reason": row["undefined_reason"] or None} for row in csv.DictReader(f)}
+    if set(saved) != {row["url"] for row in rows}:
+        sys.exit(f"{name} doesn't match the gold set. Regenerate it with scripts/classify_with_v1.py.")
+    return [saved[row["url"]] for row in rows]
+
+
+def answer_key(result):
+    return result["category"], result["method"], result["undefined_reason"]
+
+
+def report_comparison(title, rows, predictions_name, groups):
+    """Print version 1 and version 2 side by side on one gold set."""
+    versions = {"v1": load_predictions(predictions_name, rows), "v2": [classify(row["url"]) for row in rows]}
+    print(f"# {title}")
+    differs = [row["url"] for row, old in zip(rows, versions["v1"]) if answer_key(classify(row["url"], sources=())) != answer_key(old)]
+    print(f"Rows where v2 with UT1 switched off differs from v1: {differs}")
+    for group, chosen in groups:
+        if chosen:
+            subset = {name: [results[i] for i in chosen] for name, results in versions.items()}
+            report_versions(group, [rows[i] for i in chosen], subset)
+    for name, results in versions.items():
+        report_pipeline(f"{name} by method and Undefined reason", rows, results)
+    report_by_label(rows, versions)
+    report_ut1_rows(rows, versions)
+    report_missed_rows(rows, versions)
+
+
+def report_new_gold(rows):
+    title = "Version 2 headline: new gold set (data/gold_v2_urls.csv)"
+    report_comparison(title, rows, "gold_v2_v1_predictions.csv", [("All rows", list(range(len(rows))))])
+
+
+def report_posthoc(rows):
+    title = "Post-hoc: seen while building v2 (original gold set, data/gold_urls.csv)"
+    report_comparison(title, rows, "gold_v1_predictions.csv", gold_groups(rows))
+    report_gold(rows)
+
+
 def main(args):
     command = args[0] if args else None
     if command == "validation":
@@ -205,7 +341,10 @@ def main(args):
         write_report(TEST_REPORT, lambda: report_split("test"))
     elif command == "gold":
         rows = load_gold()
-        write_report("gold_report.txt", lambda: report_gold(rows))
+        write_report("gold_posthoc_report.txt", lambda: report_posthoc(rows))
+    elif command == "gold-v2":
+        rows = load_gold(GOLD_V2_PATH)
+        write_report("gold_v2_report.txt", lambda: report_new_gold(rows))
     else:
         print(__doc__)
         return 2

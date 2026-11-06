@@ -1,0 +1,15 @@
+# Post-hoc: confusion matrices from a second scoring of the test split (37563 labelled hosts)
+
+## threshold_0.60: the matrix is in reports/test_confusion_threshold_0.60.csv
+accuracy              0.059
+coverage              0.072
+precision on covered  0.819
+macro-F1              0.153
+Most-confused pairs: [(('Research & Reference', 'Education'), 170), (('Shopping', 'Music & Videos'), 28), (('Lifestyle', 'Education'), 27), (('Shopping', 'Photos'), 23), (('Lifestyle', 'Photos'), 13), (('Shopping', 'Design'), 12), (('News & Entertainment', 'Photos'), 12), (('Shopping', 'Gaming'), 9), (('Research & Reference', 'Photos'), 7), (('Research & Reference', 'Design'), 7)]
+
+## no_threshold: the matrix is in reports/test_confusion_no_threshold.csv
+accuracy              0.394
+coverage              1.000
+precision on covered  0.394
+macro-F1              0.234
+Most-confused pairs: [(('Lifestyle', 'Research & Reference'), 1078), (('Lifestyle', 'Shopping'), 1006), (('Lifestyle', 'Sports'), 564), (('Research & Reference', 'Education'), 395), (('Lifestyle', 'News & Entertainment'), 388), (('Research & Reference', 'Lifestyle'), 380), (('Lifestyle', 'Music & Videos'), 353), (('Lifestyle', 'Gaming'), 350), (('Shopping', 'Music & Videos'), 327), (('Shopping', 'Lifestyle'), 313)]

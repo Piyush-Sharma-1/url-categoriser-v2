@@ -4,10 +4,12 @@ import numpy as np
 import pytest
 from test_model import small_model
 
+from scripts.classify_with_v1 import main as classify_with_v1
+from scripts.confusion_matrix import confusion_counts
 from src import evaluate
 from src.classify import load_curated, match_curated
 from src.curlie_data import CATEGORIES, ROOT
-from src.normalize import normalize_url, registered_domain
+from src.normalize import normalize_url, registered_domain, system_scheme
 from src.train import UNMAPPED
 
 
@@ -115,7 +117,7 @@ def test_pipeline_report_shows_strict_lenient_methods_and_reasons(capsys):
 
 
 def test_gold_report_covers_each_group_with_and_without_the_curated_list(capsys):
-    rows = [{"url": "zoom.us", "label": "Meeting", "also_acceptable": "", "note": "major-app: Zoom"},
+    rows = [{"url": "slack.com", "label": "Chat & Messaging", "also_acceptable": "", "note": "major-app: Slack"},
             {"url": "banana", "label": "Undefined", "also_acceptable": "", "note": "A bare word"}]
     evaluate.report_gold(rows)
     output = capsys.readouterr().out
@@ -187,3 +189,169 @@ def test_wrong_rows_list_every_strict_miss_with_its_details():
     results = [{"category": "Sports", "method": "curlie", "explanation": "Right."},
                {"category": "Meeting", "method": "model", "explanation": "Lenient only."}]
     assert evaluate.wrong_rows(rows, results) == [("b.com", "Email", "Meeting", "Meeting", "model", "Lenient only.")]
+
+
+# The new gold set.
+
+with open(evaluate.GOLD_V2_PATH, encoding="utf-8", newline="") as f:
+    GOLD_V2_ROWS = list(csv.DictReader(f))
+
+
+def hosts_on_real_domains(rows):
+    parsed = [normalize_url(row["url"]) for row in rows if not system_scheme(row["url"])]
+    return [normal[1] for normal in parsed if normal]  # The original gold set includes invalid URLs on purpose.
+
+
+def test_gold_v2_format():
+    assert list(GOLD_V2_ROWS[0]) == ["url", "label", "also_acceptable", "in_curated", "note"]
+    assert len({row["url"] for row in GOLD_V2_ROWS}) == len(GOLD_V2_ROWS) == 54
+    assert {row["note"] for row in GOLD_V2_ROWS} == {"v2-new"}
+    assert evaluate.load_gold(evaluate.GOLD_V2_PATH) == GOLD_V2_ROWS
+
+
+def test_gold_v2_avoids_original_gold_and_probe_domains():
+    probed = (ROOT / "data" / "mapping_probe_hosts.txt").read_text(encoding="utf-8").split()
+    excluded = {registered_domain(host) for host in probed + hosts_on_real_domains(GOLD_ROWS)}
+    assert not {registered_domain(host) for host in hosts_on_real_domains(GOLD_V2_ROWS)} & excluded
+
+
+def test_gold_v2_leaves_out_the_dropped_rows():
+    assert not {"https://www.semrush.com/", "https://www.gov.uk/"} & {row["url"] for row in GOLD_V2_ROWS}
+
+
+def test_gold_v2_in_curated_column_matches_the_list():
+    curated = load_curated()
+    for row in GOLD_V2_ROWS:
+        normal = normalize_url(row["url"])
+        in_list = bool(normal and match_curated(normal[1], normal[2], curated))
+        assert row["in_curated"] == ("yes" if in_list else "no"), row["url"]
+
+
+# Comparing the versions.
+
+@pytest.mark.parametrize("share, total, low, high", [
+    (0.5, 10, 0.2366, 0.7634),
+    (0.0, 10, 0.0, 0.2775),
+    (1.0, 10, 0.7225, 1.0),
+])
+def test_wilson_interval(share, total, low, high):
+    assert evaluate.wilson_interval(share, total) == pytest.approx((low, high), abs=0.0001)
+
+
+COMPARED_ROWS = [
+    {"url": "a.com", "label": "Sports", "also_acceptable": ""},
+    {"url": "b.com", "label": "Email", "also_acceptable": "Meeting"},
+    {"url": "c.com", "label": "Undefined", "also_acceptable": ""},
+    {"url": "d.com", "label": "Gaming", "also_acceptable": ""},
+    {"url": "e.com", "label": "Design", "also_acceptable": ""},
+]
+
+
+def answer(category, method, reason=None):
+    return {"category": category, "method": method, "undefined_reason": reason, "evidence": [f"{method} evidence"]}
+
+
+COMPARED_VERSIONS = {
+    "v1": [answer("Undefined", "undefined", "model_low_confidence"), answer("Meeting", "model"),
+           answer("Undefined", "undefined", "curlie_unmapped"), answer("Undefined", "undefined", "model_low_confidence"), answer("Design", "curated")],
+    "v2": [answer("Sports", "ut1"), answer("Meeting", "model"), answer("Shopping", "ut1"),
+           answer("Undefined", "undefined", "ut1_ambiguous"), answer("Design", "curated")],
+}
+
+
+@pytest.mark.parametrize("category, status", [
+    ("Email", "right"), ("Meeting", "also acceptable"), ("Undefined", "undefined"), ("Sports", "wrong"),
+])
+def test_answer_status(category, status):
+    assert evaluate.answer_status({"label": "Email", "also_acceptable": "Meeting"}, category) == status
+
+
+def test_undefined_is_right_when_the_label_is_undefined():
+    assert evaluate.answer_status({"label": "Undefined", "also_acceptable": ""}, "Undefined") == "right"
+
+
+def test_version_scores_separate_wrong_answers_from_undefined():
+    scores = evaluate.version_scores(COMPARED_ROWS, [result["category"] for result in COMPARED_VERSIONS["v2"]])
+    assert scores == pytest.approx({
+        "strict accuracy": 2 / 5,
+        "lenient accuracy": 3 / 5,
+        "coverage": 4 / 5,
+        "precision on covered": 2 / 4,
+        "precision on covered, lenient": 3 / 4,
+        "wrong-answer rate, strict": 2 / 5,
+        "wrong-answer rate, lenient": 1 / 5,
+    })
+
+
+def test_versions_report_shows_intervals_baseline_and_pairs(capsys):
+    evaluate.report_versions("Example", COMPARED_ROWS, COMPARED_VERSIONS)
+    output = capsys.readouterr().out
+    assert "strict accuracy, 95% interval" in output and "lenient accuracy, 95% interval" in output
+    assert "always " in output and "v1" in output and "v2" in output
+    assert "Strict: both right 1, only v1 right 1, only v2 right 1, both missed 2" in output
+
+
+def test_pipeline_report_breaks_out_ut1(capsys):
+    evaluate.report_pipeline("Example", COMPARED_ROWS, COMPARED_VERSIONS["v2"])
+    output = capsys.readouterr().out
+    assert any(line.strip().startswith("ut1 ") for line in output.splitlines())
+    assert "'ut1_ambiguous': 1" in output
+
+
+def test_missed_rows_list_a_row_either_version_missed(capsys):
+    evaluate.report_missed_rows(COMPARED_ROWS, COMPARED_VERSIONS)
+    output = capsys.readouterr().out
+    assert all(url in output for url in ("a.com", "b.com", "c.com", "d.com"))
+    assert "e.com" not in output  # Both versions got this right.
+    assert "Undefined (undefined, ut1_ambiguous; undefined)" in output
+
+
+def test_ut1_rows_include_undefined_decisions_only_from_ut1(capsys):
+    evaluate.report_ut1_rows(COMPARED_ROWS, COMPARED_VERSIONS)
+    output = capsys.readouterr().out
+    assert all(url in output for url in ("a.com", "c.com", "d.com"))
+    assert "b.com" not in output and "e.com" not in output
+
+
+def test_by_label_counts_ut1_answers(capsys):
+    evaluate.report_by_label(COMPARED_ROWS, COMPARED_VERSIONS)
+    lines = capsys.readouterr().out.splitlines()
+    assert next(line for line in lines if line.startswith("Sports")).split() == ["Sports", "1", "0", "1", "1", "1"]
+    assert next(line for line in lines if line.startswith("Undefined")).split() == ["Undefined", "1", "1", "0", "1", "0"]
+
+
+def test_load_predictions_keeps_gold_order_and_restores_empty_reasons(tmp_path, monkeypatch):
+    monkeypatch.setattr(evaluate, "REPORTS", tmp_path)
+    (tmp_path / "saved.csv").write_text("url,category,method,undefined_reason,confidence\nb.com,Email,curated,,1.0\na.com,Undefined,undefined,invalid_url,0.0\n")
+    results = evaluate.load_predictions("saved.csv", [{"url": "a.com"}, {"url": "b.com"}])
+    assert [result["url"] for result in results] == ["a.com", "b.com"]
+    assert (results[0]["undefined_reason"], results[1]["undefined_reason"]) == ("invalid_url", None)
+
+
+def test_load_predictions_refuses_a_different_gold_set(tmp_path, monkeypatch):
+    monkeypatch.setattr(evaluate, "REPORTS", tmp_path)
+    (tmp_path / "saved.csv").write_text("url,category,method,undefined_reason,confidence\nb.com,Email,curated,,1.0\n")
+    with pytest.raises(SystemExit, match="doesn't match"):
+        evaluate.load_predictions("saved.csv", [{"url": "a.com"}])
+
+
+@pytest.mark.parametrize("command, report", [("gold", "gold_posthoc_report.txt"), ("gold-v2", "gold_v2_report.txt")])
+def test_gold_commands_leave_the_version_1_report_alone(monkeypatch, command, report):
+    written = []
+    monkeypatch.setattr(evaluate, "write_report", lambda name, function: written.append(name))
+    assert evaluate.main([command]) == 0
+    assert written == [report]
+
+
+def test_version_1_script_refuses_version_2_code(tmp_path):
+    with pytest.raises(SystemExit, match="version 2's code"):
+        classify_with_v1(tmp_path / "gold.csv", tmp_path / "out.csv")
+
+
+def test_confusion_counts_have_a_row_per_true_category_and_undefined_last():
+    labels = np.array(["Sports", "Sports", "Email", "Email"])
+    predictions = np.array(["Sports", "Undefined", "Sports", "Gaming"])
+    rows, columns, counts = confusion_counts(labels, predictions)
+    assert rows == ["Email", "Sports"]
+    assert columns == ["Email", "Gaming", "Sports", "Undefined"]
+    assert counts.tolist() == [[0, 1, 1, 0], [0, 0, 1, 1]]

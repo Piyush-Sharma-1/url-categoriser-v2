@@ -3,7 +3,7 @@ import socket
 import pytest
 import tldextract
 
-from src.classify import classify
+from src.classify import classify, in_house_rule
 from src.normalize import TLD_OPTIONS, registered_domain
 
 UNDEFINED, IN_HOUSE, SYSTEM = "Undefined", "In House Tools", "System Processes"
@@ -72,7 +72,7 @@ def test_normalisation_and_rules(raw, normalized, category):
 
 
 def test_public_ip_is_not_in_house():
-    assert classify("8.8.8.8")["category"] != IN_HOUSE
+    assert in_house_rule("8.8.8.8") is None
 
 
 @pytest.mark.parametrize("host, expected", [

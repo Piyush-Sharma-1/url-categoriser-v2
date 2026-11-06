@@ -1,0 +1,6 @@
+UT1 lists used: 58 of 69
+UT1 entries read: 5528626
+Hosts listed: 5240336
+Hosts shipped: 211702 {'ut1_split_votes': 4283, 'ut1_ambiguous': 5696, 'category': 201723}
+Hosts listed only in unmapped lists, not shipped: 5028634
+lookup.json.gz: 1.3 MB
