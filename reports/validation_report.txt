@@ -1,0 +1,43 @@
+## Text model on the validation split
+37300 labelled hosts and 30416 unmapped hosts
+
+score                                       threshold 0.60                        no threshold          baseline: always Lifestyle
+accuracy                                             0.058                               0.391                               0.229
+coverage                                             0.072                               1.000                               1.000
+precision on covered                                 0.802                               0.391                               0.229
+macro-F1                                             0.179                               0.249                               0.014
+
+F1 per category
+category                 examples                      threshold 0.60                        no threshold          baseline: always Lifestyle
+Analytics                      60                               0.030                               0.051                               0.000
+Banking & Finance            1766                               0.158                               0.470                               0.000
+Calling & Phone                67                               0.156                               0.071                               0.000
+Chat & Messaging               49                               0.254                               0.113                               0.000
+Design                       1153                               0.122                               0.289                               0.000
+Developer                     893                               0.027                               0.258                               0.000
+E-commerce                    128                               0.058                               0.073                               0.000
+Education                    2154                               0.504                               0.601                               0.000
+Email                          50                               0.395                               0.215                               0.000
+File Sharing                   23                               0.222                               0.191                               0.000
+Gaming                        998                               0.081                               0.321                               0.000
+Hiring & Recruitment           95                               0.132                               0.086                               0.000
+Internet                      262                               0.302                               0.187                               0.000
+Job Search                     94                               0.474                               0.211                               0.000
+Knowledge Management           29                               0.205                               0.044                               0.000
+Lifestyle                    8549                               0.001                               0.426                               0.373
+Marketing                     530                               0.066                               0.174                               0.000
+Meeting                        26                               0.350                               0.075                               0.000
+Music & Videos               2947                               0.079                               0.368                               0.000
+News & Entertainment         1570                               0.053                               0.305                               0.000
+Office Apps                    48                               0.179                               0.053                               0.000
+Photos                        717                               0.454                               0.390                               0.000
+Research & Reference         5127                               0.036                               0.431                               0.000
+Shopping                     5718                               0.001                               0.409                               0.000
+Social Media                   27                               0.133                               0.078                               0.000
+Sports                       4220                               0.171                               0.574                               0.000
+
+Most-confused pairs (true category -> answer)
+At threshold 0.60: [(('Research & Reference', 'Education'), 187), (('Lifestyle', 'Education'), 36), (('Shopping', 'Photos'), 27), (('Shopping', 'Design'), 21), (('Shopping', 'Music & Videos'), 19), (('Lifestyle', 'Photos'), 16), (('News & Entertainment', 'Photos'), 14), (('Shopping', 'Sports'), 11), (('Shopping', 'Gaming'), 9), (('Marketing', 'Email'), 7)]
+At no threshold: [(('Lifestyle', 'Shopping'), 1000), (('Lifestyle', 'Research & Reference'), 979), (('Lifestyle', 'Sports'), 533), (('Lifestyle', 'News & Entertainment'), 443), (('Research & Reference', 'Education'), 423), (('Shopping', 'Lifestyle'), 350), (('Research & Reference', 'Lifestyle'), 340), (('Music & Videos', 'Shopping'), 337), (('Lifestyle', 'Gaming'), 331), (('Shopping', 'Music & Videos'), 324)]
+
+Unmapped hosts the model assigns a category: 0.011

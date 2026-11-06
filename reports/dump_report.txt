@@ -1,0 +1,294 @@
+## Listings per top-level branch (2739037 in total)
+ 1259441  World  (ignored)
+  706465  Regional  (ignored)
+  126852  Business
+  124697  Arts
+  121208  Society
+   57129  Science
+   56690  Sports
+   56203  Computers
+   51620  Recreation
+   41996  Shopping
+   33760  Reference
+   31618  Health
+   26164  Kids_and_Teens  (ignored)
+   20799  Games
+   12988  Home
+    6403  Adult
+    5004  News
+
+## Retained listings by status
+{'unmapped': 276408, 'confident': 470372, 'ambiguous': 187} total 746967
+
+## Listings and registered domains per We360 category
+    553     483  Analytics
+  12775   12298  Banking & Finance
+    506     493  Calling & Phone
+    490     397  Chat & Messaging
+   9796    8739  Design
+  16569    8290  Developer
+    958     945  E-commerce
+  27817   13759  Education
+    832     599  Email
+    175     129  File Sharing
+  20799    8421  Gaming
+    627     618  Hiring & Recruitment
+      0       0  In House Tools  BELOW 50
+   2771    2211  Internet
+    661     603  Job Search
+    266     237  Knowledge Management
+  89453   64761  Lifestyle
+   3903    3818  Marketing
+    154     151  Meeting
+  40936   22202  Music & Videos
+  44850   13328  News & Entertainment
+    561     507  Office Apps
+   5522    5033  Photos
+  90090   40416  Research & Reference
+  42356   40299  Shopping
+    262     222  Social Media
+  56690   31381  Sports
+      0       0  System Processes  BELOW 50
+
+## Listings per taxonomy row
+   6403  Adult  [unmapped] 
+  39497  Arts  [unmapped] 
+   4340  Arts/Animation  [confident] News & Entertainment
+    295  Arts/Bodyart  [confident] Lifestyle
+   1733  Arts/Comics  [confident] News & Entertainment
+   3322  Arts/Crafts  [confident] Lifestyle
+    703  Arts/Design  [confident] Design
+    834  Arts/Education  [confident] Education
+    190  Arts/Entertainment  [confident] News & Entertainment
+     23  Arts/Entertainment/Online_Media  [confident] Music & Videos
+    263  Arts/Graphic_Design  [confident] Design
+   1100  Arts/Illustration  [confident] Design
+  18489  Arts/Movies  [confident] News & Entertainment
+  36959  Arts/Music  [confident] Music & Videos
+   4441  Arts/People  [confident] News & Entertainment
+   3408  Arts/Performing_Arts/Acting  [confident] News & Entertainment
+   1998  Arts/Photography  [confident] Photos
+   1459  Arts/Radio  [confident] Music & Videos
+   5643  Arts/Television  [confident] News & Entertainment
+ 102230  Business  [unmapped] 
+   1743  Business/Accounting  [confident] Banking & Finance
+      8  Business/Accounting/Employment  [confident] Job Search
+      8  Business/Agriculture_and_Forestry/Employment  [confident] Job Search
+     31  Business/Arts_and_Entertainment/Employment  [confident] Job Search
+      6  Business/Arts_and_Entertainment/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+   1689  Business/Arts_and_Entertainment/Music  [confident] Music & Videos
+   3429  Business/Arts_and_Entertainment/Photography  [confident] Photos
+      8  Business/Automotive/Employment  [confident] Job Search
+      8  Business/Biotechnology_and_Pharmaceuticals/Employment  [confident] Job Search
+      3  Business/Biotechnology_and_Pharmaceuticals/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+     89  Business/Business_Services/AudioVisual/Video_Conferencing  [confident] Meeting
+   1184  Business/Business_Services/Design  [confident] Design
+     19  Business/Business_Services/Office_Services/Staffing_Services  [confident] Hiring & Recruitment
+     22  Business/Construction_and_Maintenance/Employment  [confident] Job Search
+    311  Business/E-Commerce  [confident] E-commerce
+      4  Business/E-Commerce/Employment  [confident] Job Search
+      1  Business/E-Commerce/Employment/Executive_Search  [confident] Hiring & Recruitment
+     21  Business/E-Commerce/Marketplaces  [ambiguous] E-commerce|Shopping
+    639  Business/Education_and_Training  [confident] Education
+     89  Business/Employment/Careers  [confident] Job Search
+    107  Business/Employment/Job_Search  [confident] Job Search
+    238  Business/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+    100  Business/Employment/Resumes_and_Portfolios  [confident] Job Search
+     13  Business/Energy/Employment  [confident] Job Search
+   7382  Business/Financial_Services  [confident] Banking & Finance
+     17  Business/Financial_Services/Employment  [confident] Job Search
+     45  Business/Financial_Services/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+      6  Business/Food_and_Related_Products/Employment  [confident] Job Search
+     20  Business/Healthcare/Employment  [confident] Job Search
+    127  Business/Healthcare/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+     22  Business/Hospitality/Employment  [confident] Job Search
+     26  Business/Hospitality/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+      3  Business/Human_Resources/Employment  [confident] Job Search
+      4  Business/Human_Resources/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+     17  Business/Human_Resources/Outplacement  [ambiguous] Job Search|Hiring & Recruitment
+     20  Business/Human_Resources/Recruiting_and_Retention  [confident] Hiring & Recruitment
+    134  Business/Information_Technology/Employment  [confident] Job Search
+     40  Business/Information_Technology/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+   2382  Business/Investing  [confident] Banking & Finance
+      1  Business/Investing/Employment  [confident] Job Search
+     16  Business/Management/Employment  [confident] Job Search
+   3097  Business/Marketing_and_Advertising  [confident] Marketing
+     20  Business/Marketing_and_Advertising/Employment  [confident] Job Search
+     23  Business/Marketing_and_Advertising/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+     20  Business/Marketing_and_Advertising/Internet_Marketing/Web_Analytics  [confident] Analytics
+    165  Business/News_and_Media  [confident] News & Entertainment
+      4  Business/Real_Estate/Employment  [confident] Job Search
+     11  Business/Real_Estate/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+    422  Business/Retail_Trade  [confident] E-commerce
+      8  Business/Retail_Trade/Employment  [confident] Job Search
+     95  Business/Retail_Trade/Retailers  [ambiguous] E-commerce|Shopping
+    258  Business/Retail_Trade/Store_Fixtures  [unmapped] 
+    186  Business/Telecommunications/Call_Centers  [confident] Calling & Phone
+     79  Business/Telecommunications/Carriers  [confident] Calling & Phone
+      5  Business/Telecommunications/Employment  [confident] Job Search
+      5  Business/Telecommunications/Employment/Recruitment_and_Staffing  [confident] Hiring & Recruitment
+     55  Business/Telecommunications/Services/Conferencing  [confident] Meeting
+      7  Business/Telecommunications/Services/Direct_Dial_Long_Distance  [confident] Calling & Phone
+     71  Business/Telecommunications/Services/Messaging  [confident] Chat & Messaging
+     10  Business/Telecommunications/Services/Phone_Cards  [confident] Calling & Phone
+      8  Business/Telecommunications/Services/Toll_Free  [confident] Calling & Phone
+     34  Business/Telecommunications/Services/VoIP  [confident] Calling & Phone
+      6  Business/Textiles_and_Nonwovens/Employment  [confident] Job Search
+      1  Business/Transportation_and_Logistics/Employment  [confident] Job Search
+  15326  Computers  [unmapped] 
+    728  Computers/Artificial_Intelligence  [confident] Research & Reference
+    460  Computers/CAD_and_CAM  [confident] Design
+   1267  Computers/Computer_Science  [confident] Research & Reference
+     80  Computers/Data_Communications/Telephony  [confident] Calling & Phone
+     16  Computers/Data_Communications/Unified_Messaging  [confident] Chat & Messaging
+     25  Computers/Data_Communications/Unified_Messaging/Fax_Server  [confident] Calling & Phone
+   1336  Computers/Data_Formats  [confident] Developer
+    272  Computers/Education  [confident] Education
+    693  Computers/Graphics  [confident] Design
+    286  Computers/Hardware/Retailers  [confident] Shopping
+    748  Computers/Internet  [unmapped] 
+    203  Computers/Internet/Access_Providers  [confident] Internet
+    201  Computers/Internet/Chat  [confident] Chat & Messaging
+     10  Computers/Internet/Chat/Video  [ambiguous] Meeting|Chat & Messaging
+      7  Computers/Internet/Chat/Voice  [confident] Calling & Phone
+     81  Computers/Internet/Cloud_Computing  [confident] Internet
+    531  Computers/Internet/Domain_Names  [confident] Internet
+    403  Computers/Internet/E-mail  [confident] Email
+     71  Computers/Internet/E-mail/E-greetings  [confident] Lifestyle
+     92  Computers/Internet/E-mail/Marketing  [confident] Marketing
+     10  Computers/Internet/File_Sharing  [confident] File Sharing
+     22  Computers/Internet/Internet_Fax  [confident] Calling & Phone
+     41  Computers/Internet/News_and_Media  [confident] News & Entertainment
+    203  Computers/Internet/On_the_Web/Online_Communities  [confident] Social Media
+     31  Computers/Internet/On_the_Web/Web_Applications/Bookmark_Managers  [confident] Knowledge Management
+     25  Computers/Internet/On_the_Web/Web_Applications/Calendars  [confident] Office Apps
+     33  Computers/Internet/On_the_Web/Web_Applications/Content_Management  [confident] Developer
+      9  Computers/Internet/On_the_Web/Web_Applications/Personal_Information_Managers  [confident] Knowledge Management
+     42  Computers/Internet/On_the_Web/Web_Applications/Photo_Sharing  [confident] Photos
+      9  Computers/Internet/On_the_Web/Web_Applications/Presentation_Sharing  [confident] Office Apps
+     31  Computers/Internet/On_the_Web/Web_Applications/Storage  [confident] File Sharing
+     19  Computers/Internet/On_the_Web/Web_Applications/Video_Sharing  [confident] Music & Videos
+     44  Computers/Internet/On_the_Web/Weblogs  [ambiguous] Social Media|Developer
+     35  Computers/Internet/On_the_Web/Weblogs/Collaborative  [confident] Social Media
+     24  Computers/Internet/On_the_Web/Weblogs/Hosts  [confident] Social Media
+    270  Computers/Internet/On_the_Web/Weblogs/Templates  [confident] Developer
+    436  Computers/Internet/On_the_Web/Weblogs/Tools  [confident] Developer
+    619  Computers/Internet/Protocols  [confident] Developer
+    119  Computers/Internet/Proxying_and_Filtering  [confident] Internet
+   1326  Computers/Internet/RFCs  [confident] Developer
+    519  Computers/Internet/Searching  [confident] Internet
+     14  Computers/Internet/Telephony  [confident] Calling & Phone
+     42  Computers/Internet/Training  [confident] Education
+    660  Computers/Internet/Web_Design_and_Development  [confident] Developer
+   4503  Computers/Internet/Web_Design_and_Development/Designers  [confident] Design
+    859  Computers/Internet/Web_Design_and_Development/Hosting  [confident] Internet
+    556  Computers/Internet/Web_Design_and_Development/Promotion  [confident] Marketing
+     35  Computers/Mobile_Computing/Wireless_Data/Short_Messaging_Service  [confident] Chat & Messaging
+    100  Computers/Multimedia/Digital_Video  [confident] Music & Videos
+    687  Computers/Multimedia/Music_and_Audio  [confident] Music & Videos
+    500  Computers/Open_Source  [confident] Developer
+     42  Computers/Open_Source/Open_Content  [confident] Research & Reference
+   9263  Computers/Programming  [confident] Developer
+    856  Computers/Software/Accounting  [confident] Banking & Finance
+     35  Computers/Software/Build_Management  [confident] Developer
+    165  Computers/Software/Business/E-Commerce  [confident] E-commerce
+    196  Computers/Software/Configuration_Management  [confident] Developer
+    882  Computers/Software/Databases  [confident] Developer
+     88  Computers/Software/Databases/Data_Mining  [confident] Analytics
+    132  Computers/Software/Databases/Data_Warehousing  [confident] Analytics
+    151  Computers/Software/Document_Management  [confident] Knowledge Management
+     83  Computers/Software/Editors  [confident] Developer
+    235  Computers/Software/Educational  [confident] Education
+     28  Computers/Software/Fonts  [confident] Design
+    862  Computers/Software/Graphics  [confident] Design
+     53  Computers/Software/Graphics/Image_Cataloguing  [confident] Photos
+     60  Computers/Software/Groupware  [confident] Office Apps
+     55  Computers/Software/Groupware/Microsoft_Exchange  [confident] Email
+     75  Computers/Software/Groupware/Wiki  [confident] Knowledge Management
+     59  Computers/Software/Human_Resources/Recruitment_Management  [confident] Hiring & Recruitment
+    148  Computers/Software/Internet/Authoring  [confident] Developer
+    167  Computers/Software/Internet/Clients  [unmapped] 
+    129  Computers/Software/Internet/Clients/Chat  [confident] Chat & Messaging
+     87  Computers/Software/Internet/Clients/File_Sharing  [confident] File Sharing
+     26  Computers/Software/Internet/Clients/FTP  [confident] File Sharing
+    250  Computers/Software/Internet/Clients/Mail  [confident] Email
+     23  Computers/Software/Internet/Clients/SeaMonkey  [confident] Internet
+     10  Computers/Software/Internet/Clients/Video_Conferencing  [confident] Meeting
+    436  Computers/Software/Internet/Clients/Web  [confident] Internet
+    267  Computers/Software/Internet/Servers  [confident] Developer
+     18  Computers/Software/Internet/Servers/Advertising  [confident] Marketing
+     38  Computers/Software/Internet/Servers/Chat  [confident] Chat & Messaging
+     20  Computers/Software/Internet/Servers/Collaboration  [confident] Office Apps
+     21  Computers/Software/Internet/Servers/FTP  [confident] File Sharing
+    124  Computers/Software/Internet/Servers/Mail  [confident] Email
+     60  Computers/Software/Internet/Servers/Shopping  [confident] E-commerce
+    445  Computers/Software/Internet/Site_Management  [confident] Developer
+     76  Computers/Software/Internet/Site_Management/Log_Analysis  [confident] Analytics
+    140  Computers/Software/Marketing  [confident] Marketing
+     56  Computers/Software/Office_Suites  [confident] Office Apps
+     86  Computers/Software/Online_Training  [confident] Education
+   5028  Computers/Software/Operating_Systems  [unmapped] 
+     41  Computers/Software/Presentation  [confident] Office Apps
+    158  Computers/Software/Project_Management  [confident] Office Apps
+     74  Computers/Software/Retailers  [confident] Shopping
+     70  Computers/Software/Software_Engineering  [confident] Developer
+    120  Computers/Software/Spreadsheets  [confident] Office Apps
+     72  Computers/Software/Word_Processors  [confident] Office Apps
+     34  Computers/Speech_Technology/Telephony  [confident] Calling & Phone
+  20799  Games  [confident] Gaming
+  17373  Health  [confident] Lifestyle
+   7679  Health/Conditions_and_Diseases  [confident] Research & Reference
+   6566  Health/Medicine  [confident] Research & Reference
+  12576  Home  [confident] Lifestyle
+    412  Home/Personal_Finance  [confident] Banking & Finance
+   5004  News  [confident] News & Entertainment
+  50224  Recreation  [confident] Lifestyle
+   1396  Recreation/Humor  [confident] News & Entertainment
+   7520  Reference  [confident] Research & Reference
+  25709  Reference/Education  [confident] Education
+    418  Reference/Knowledge_Management  [confident] Research & Reference
+     21  Reference/Knowledge_Management/Information_Assets/Business_Intelligence  [confident] Analytics
+     92  Reference/Knowledge_Management/Knowledge_Discovery  [confident] Analytics
+  55569  Science  [confident] Research & Reference
+   1436  Science/Instruments_and_Supplies  [unmapped] 
+    124  Science/Math/Statistics/Software  [confident] Analytics
+  41996  Shopping  [confident] Shopping
+ 105315  Society  [unmapped] 
+   2971  Society/Genealogy  [confident] Lifestyle
+   5857  Society/History  [confident] Research & Reference
+   1075  Society/Holidays  [confident] Lifestyle
+   1065  Society/Law/Legal_Information  [confident] Research & Reference
+    266  Society/Lifestyle_Choices  [confident] Lifestyle
+   3379  Society/Philosophy  [confident] Research & Reference
+   1280  Society/Relationships  [confident] Lifestyle
+  56690  Sports  [confident] Sports
+rows matching no listing: []
+
+## World: 1259441 listings in 91 languages
+ 394751  Deutsch
+ 167277  Français
+ 123049  Japanese
+ 109187  Italiano
+  80312  Russian
+  78019  Español
+  56629  Nederlands
+  38884  Polski
+  36171  Türkçe
+  22128  Dansk
+Indian languages: {'Hindi': 614, 'Tamil': 166, 'Telugu': 71, 'Gujarati': 54, 'Marathi': 46, 'Urdu': 37, 'Bangla': 19, 'Kannada': 17, 'Punjabi_Gurmukhi': 28} total 1052
+
+## Cross-language links (free text in category descriptions; the dump has no altlang field)
+World to English: 150 links from 75 of 291321 World categories, which directly hold 531 listings
+   102 listings  World/Italiano/Affari/Edilizia/Materiali_e_Forniture/Termo-Idraulica_e_Condizionamento/Riscaldamento,_Ventilazione_e_Condizionamento  ->  Business/Construction_and_Maintenance/Materials_and_Supplies
+    76 listings  World/Italiano/Scienza/Astronomia/Organizzazioni  ->  Science/Astronomy/Associations
+    47 listings  World/Italiano/Affari/Servizi_Finanziari/Banche  ->  Business/Financial_Services/Banking_Services
+    37 listings  World/Dansk/Kultur/Musik/Komposition/Komponister  ->  Arts/Music/Composition/Composers
+    24 listings  World/Italiano/Scienza/Astronomia/Immagini  ->  Science/Astronomy/Images
+
+## Regional: 706465 listings; Asia/India: 7532
+Top topic segments, all Regional: [(240640, 'Business_and_Economy'), (81357, 'Society_and_Culture'), (65286, 'Travel_and_Tourism'), (42879, 'Education'), (40264, 'Arts_and_Entertainment'), (35405, 'Government'), (31369, 'Lodging'), (29499, 'Health'), (29392, 'Recreation_and_Sports'), (21469, 'Shopping'), (21428, 'Religion'), (20397, 'Real_Estate'), (16437, 'Construction_and_Maintenance'), (15806, 'Computers_and_Internet'), (14380, 'Restaurants_and_Bars')]
+Top topic segments, India: [(3329, 'Business_and_Economy'), (1349, 'Industrial'), (755, 'Society_and_Culture'), (708, 'Manufacturing'), (627, 'Computers_and_Internet'), (474, 'Education'), (435, 'Travel_and_Tourism'), (395, 'Arts_and_Entertainment'), (273, 'Web_Design_and_Development'), (256, 'Health'), (256, 'Government'), (235, 'Personal_Pages'), (228, 'News_and_Media'), (197, 'Organisations'), (167, 'Lodging')]
+
+## Registered domains in Kids_and_Teens
+listed only in Kids_and_Teens: 5120 (with an English listing: 1605)
+no retained listing: 8874 (with an English listing: 2006)

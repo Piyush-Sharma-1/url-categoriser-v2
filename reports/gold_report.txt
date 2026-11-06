@@ -1,0 +1,124 @@
+
+## All rows, with the curated list: 85 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.753   0.176
+lenient accuracy           0.765   0.176
+coverage                   0.588   0.000
+precision on covered       0.980   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.047  1.000  1.000
+  curated    0.271  1.000  1.000
+  curlie     0.259  0.955  1.000
+  model      0.012  1.000  1.000
+  undefined  0.412  0.429  0.429
+Undefined rate: 0.412; by reason: {'model_low_confidence': 23, 'curlie_split_votes': 4, 'curlie_deep_page_only': 2, 'invalid_url': 3, 'curlie_unmapped': 3}
+
+## All rows, without the curated list: 85 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.600   0.176
+lenient accuracy           0.612   0.176
+coverage                   0.435   0.000
+precision on covered       0.973   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.047  1.000  1.000
+  curlie     0.353  0.967  1.000
+  model      0.035  1.000  1.000
+  undefined  0.565  0.312  0.312
+Undefined rate: 0.565; by reason: {'model_low_confidence': 31, 'curlie_split_votes': 6, 'curlie_deep_page_only': 5, 'invalid_url': 3, 'curlie_unmapped': 3}
+
+## Drafted candidates, with the curated list: 75 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.720   0.200
+lenient accuracy           0.733   0.200
+coverage                   0.533   0.000
+precision on covered       0.975   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.053  1.000  1.000
+  curated    0.173  1.000  1.000
+  curlie     0.293  0.955  1.000
+  model      0.013  1.000  1.000
+  undefined  0.467  0.429  0.429
+Undefined rate: 0.467; by reason: {'model_low_confidence': 23, 'curlie_split_votes': 4, 'curlie_deep_page_only': 2, 'invalid_url': 3, 'curlie_unmapped': 3}
+
+## Drafted candidates, without the curated list: 75 URLs
+score                   pipeline   baseline (always Undefined)
+strict accuracy            0.627   0.200
+lenient accuracy           0.640   0.200
+coverage                   0.440   0.000
+precision on covered       0.970   0.000
+Per method (share of rows, strict accuracy, lenient accuracy):
+  rule       0.053  1.000  1.000
+  curlie     0.360  0.963  1.000
+  model      0.027  1.000  1.000
+  undefined  0.560  0.357  0.357
+Undefined rate: 0.560; by reason: {'model_low_confidence': 29, 'curlie_split_votes': 4, 'curlie_deep_page_only': 3, 'invalid_url': 3, 'curlie_unmapped': 3}
+
+## major-app rows, with the curated list: 10 URLs
+score                   pipeline   baseline (always Email)
+strict accuracy            1.000   0.200
+lenient accuracy           1.000   0.200
+coverage                   1.000   1.000
+precision on covered       1.000   0.200
+Per method (share of rows, strict accuracy, lenient accuracy):
+  curated    1.000  1.000  1.000
+Undefined rate: 0.000; by reason: {}
+
+## major-app rows, without the curated list: 10 URLs
+score                   pipeline   baseline (always Email)
+strict accuracy            0.400   0.200
+lenient accuracy           0.400   0.200
+coverage                   0.400   1.000
+precision on covered       1.000   0.200
+Per method (share of rows, strict accuracy, lenient accuracy):
+  curlie     0.300  1.000  1.000
+  model      0.100  1.000  1.000
+  undefined  0.600  0.000  0.000
+Undefined rate: 0.600; by reason: {'curlie_split_votes': 2, 'curlie_deep_page_only': 2, 'model_low_confidence': 2}
+
+## Indian and non-English rows, with the curated list: 14 URLs
+score                   pipeline   baseline (always Lifestyle)
+strict accuracy            0.643   0.143
+lenient accuracy           0.643   0.143
+coverage                   0.571   1.000
+precision on covered       1.000   0.143
+Per method (share of rows, strict accuracy, lenient accuracy):
+  curated    0.571  1.000  1.000
+  undefined  0.429  0.167  0.167
+Undefined rate: 0.429; by reason: {'model_low_confidence': 5, 'curlie_deep_page_only': 1}
+
+## Indian and non-English rows, without the curated list: 14 URLs
+score                   pipeline   baseline (always Lifestyle)
+strict accuracy            0.357   0.143
+lenient accuracy           0.357   0.143
+coverage                   0.286   1.000
+precision on covered       1.000   0.143
+Per method (share of rows, strict accuracy, lenient accuracy):
+  curlie     0.214  1.000  1.000
+  model      0.071  1.000  1.000
+  undefined  0.714  0.100  0.100
+Undefined rate: 0.714; by reason: {'model_low_confidence': 8, 'curlie_deep_page_only': 2}
+
+## Curated list overrides (URL, curated, Curlie, your label)
+
+## Rows the pipeline got wrong on strict accuracy (URL, label, also acceptable, prediction, method, explanation)
+('https://plausible.io/docs', 'Analytics', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.hotjar.com/', 'Analytics', 'Marketing', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.vonage.com/', 'Calling & Phone', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://aircall.io/', 'Calling & Phone', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://mattermost.com/', 'Chat & Messaging', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.sketch.com/', 'Design', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://woocommerce.com/', 'E-commerce', 'Developer', 'Undefined', 'undefined', "No category reaches 60% of Curlie's homepage listings for this site.")
+('https://www.workable.com/', 'Hiring & Recruitment', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.smartrecruiters.com/', 'Hiring & Recruitment', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.ziprecruiter.com/', 'Job Search', 'Hiring & Recruitment', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.shine.com/', 'Job Search', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://obsidian.md/', 'Knowledge Management', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://slab.com/', 'Knowledge Management', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.constantcontact.com/', 'Marketing', 'Email', 'Undefined', 'undefined', "No category reaches 60% of Curlie's homepage listings for this site.")
+('https://whereby.com/', 'Meeting', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.spiegel.de/', 'News & Entertainment', '', 'Undefined', 'undefined', 'Curlie lists only individual pages on this domain, which says too little about the site.')
+('https://www.amarujala.com/', 'News & Entertainment', '', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.shutterstock.com/', 'Photos', 'Design', 'Undefined', 'undefined', "No category reaches 60% of Curlie's homepage listings for this site.")
+('https://www.irctc.co.in/', 'Lifestyle', 'Shopping', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')
+('https://www.tiktok.com/', 'Social Media', 'Music & Videos', 'Music & Videos', 'curlie', "100% of Curlie's homepage listings for this site map to Music & Videos.")
+('https://www.naver.com/', 'Internet', 'News & Entertainment', 'Undefined', 'undefined', 'Curlie does not list this site, and the text model is not confident enough.')

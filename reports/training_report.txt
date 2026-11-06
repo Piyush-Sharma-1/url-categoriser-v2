@@ -1,0 +1,54 @@
+## Training examples per category
+   211  Analytics
+  2000  Banking & Finance
+   330  Calling & Phone
+   222  Chat & Messaging
+  2000  Design
+  2000  Developer
+   573  E-commerce
+  2000  Education
+   222  Email
+    55  File Sharing
+  2000  Gaming
+   409  Hiring & Recruitment
+  1289  Internet
+   347  Job Search
+   131  Knowledge Management
+  2000  Lifestyle
+  2000  Marketing
+    98  Meeting
+  2000  Music & Videos
+  2000  News & Entertainment
+   273  Office Apps
+  2000  Photos
+  2000  Research & Reference
+  2000  Shopping
+   114  Social Media
+  2000  Sports
+total 30274
+
+## Model: min_df=2, 74378 n-grams, 14.4 MB
+
+## Validation threshold table
+threshold coverage precision
+     0.00    1.000     0.391
+     0.05    1.000     0.391
+     0.10    0.745     0.467
+     0.15    0.460     0.578
+     0.20    0.311     0.657
+     0.25    0.229     0.710
+     0.30    0.183     0.744
+     0.35    0.154     0.763
+     0.40    0.132     0.774
+     0.45    0.115     0.783
+     0.50    0.099     0.787
+     0.55    0.085     0.796
+     0.60    0.072     0.802
+     0.65    0.061     0.804
+     0.70    0.051     0.809
+     0.75    0.042     0.817
+     0.80    0.033     0.825
+     0.85    0.025     0.826
+     0.90    0.018     0.851
+     0.95    0.009     0.914
+Chosen threshold: 0.60 (reached 0.80 precision)

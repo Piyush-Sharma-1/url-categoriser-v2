@@ -1,0 +1,212 @@
+curlie_path,we360_category,status,note
+Adult,,unmapped,Adult content has no We360 equivalent. Listed sites return Undefined (curlie_unmapped)
+Arts,,unmapped,"Default: subjects such as literature, theatre and visual art have no matching We360 category"
+Arts/Animation,News & Entertainment,confident,Information and fan sites about animated works
+Arts/Bodyart,Lifestyle,confident,Personal style and body art
+Arts/Comics,News & Entertainment,confident,Comics and editorial content about them
+Arts/Crafts,Lifestyle,confident,Hobby crafts
+Arts/Design,Design,confident,Design disciplines and studios
+Arts/Education,Education,confident,Arts schools and teaching
+Arts/Entertainment,News & Entertainment,confident,Entertainment news and reviews
+Arts/Entertainment/Online_Media,Music & Videos,confident,Streaming services such as Netflix
+Arts/Graphic_Design,Design,confident,Graphic design
+Arts/Illustration,Design,confident,Illustrators and illustration
+Arts/Movies,News & Entertainment,confident,"Judgement: mostly film information and reviews, not streaming"
+Arts/Music,Music & Videos,confident,"Judgement: mostly bands, styles and instruments, not streaming. Music & Videos is the nearest fit"
+Arts/People,News & Entertainment,confident,"Actor and celebrity pages, like Arts/Movies"
+Arts/Performing_Arts/Acting,News & Entertainment,confident,"Actor pages and film databases, like Arts/Movies"
+Arts/Photography,Photos,confident,Photographers and photography techniques
+Arts/Radio,Music & Videos,confident,"Broadcast and internet radio, including Spotify"
+Arts/Television,News & Entertainment,confident,"Judgement: mostly programme information and broadcasters, not streaming"
+Business,,unmapped,Default: industries such as construction and textiles are subjects with no matching We360 category
+Business/Accounting,Banking & Finance,confident,Judgement: accounting firms are the nearest fit
+Business/Accounting/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Agriculture_and_Forestry/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Arts_and_Entertainment/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Arts_and_Entertainment/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Arts_and_Entertainment/Music,Music & Videos,confident,"Judgement: music businesses and producers, not streaming. Nearest fit"
+Business/Arts_and_Entertainment/Photography,Photos,confident,Photographers and stock photo sites such as Unsplash
+Business/Automotive/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Biotechnology_and_Pharmaceuticals/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Biotechnology_and_Pharmaceuticals/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Business_Services/AudioVisual/Video_Conferencing,Meeting,confident,Video conferencing providers
+Business/Business_Services/Design,Design,confident,Design studios and services
+Business/Business_Services/Office_Services/Staffing_Services,Hiring & Recruitment,confident,Staffing agencies used by employers
+Business/Construction_and_Maintenance/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/E-Commerce,E-commerce,confident,"Seller side: store consultants, developers and vendors"
+Business/E-Commerce/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/E-Commerce/Employment/Executive_Search,Hiring & Recruitment,confident,Executive recruiters
+Business/E-Commerce/Marketplaces,E-commerce|Shopping,ambiguous,Marketplaces serve both sellers and buyers
+Business/Education_and_Training,Education,confident,Corporate and vocational training providers
+Business/Employment/Careers,Job Search,confident,Career advice and directories for candidates
+Business/Employment/Job_Search,Job Search,confident,Job boards for candidates
+Business/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Recruiters. Employers pay even though candidates also use them
+Business/Employment/Resumes_and_Portfolios,Job Search,confident,Resume services for candidates
+Business/Energy/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Financial_Services,Banking & Finance,confident,"Banks, insurance, mortgages and payments"
+Business/Financial_Services/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Financial_Services/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Food_and_Related_Products/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Healthcare/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Healthcare/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Hospitality/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Hospitality/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Human_Resources/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Human_Resources/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Human_Resources/Outplacement,Job Search|Hiring & Recruitment,ambiguous,Employers pay but job seekers are the users
+Business/Human_Resources/Recruiting_and_Retention,Hiring & Recruitment,confident,Recruiting services for employers
+Business/Information_Technology/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Information_Technology/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Investing,Banking & Finance,confident,Investment services
+Business/Investing/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Management/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Marketing_and_Advertising,Marketing,confident,Agencies and marketing services
+Business/Marketing_and_Advertising/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Marketing_and_Advertising/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Marketing_and_Advertising/Internet_Marketing/Web_Analytics,Analytics,confident,Web analytics tools such as Clicky
+Business/News_and_Media,News & Entertainment,confident,Business news
+Business/Real_Estate/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Real_Estate/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Retail_Trade,E-commerce,confident,"Judgement: software, consulting and services for sellers and store management"
+Business/Retail_Trade/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Retail_Trade/Retailers,E-commerce|Shopping,ambiguous,Mixes consumer stores with trade news for store owners
+Business/Retail_Trade/Store_Fixtures,,unmapped,Physical store fixtures are a subject with no matching We360 category
+Business/Telecommunications/Call_Centers,Calling & Phone,confident,Judgement: call centre vendors and services
+Business/Telecommunications/Carriers,Calling & Phone,confident,Phone carriers
+Business/Telecommunications/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Telecommunications/Employment/Recruitment_and_Staffing,Hiring & Recruitment,confident,Industry recruiters. Employers pay even though candidates also use them
+Business/Telecommunications/Services/Conferencing,Meeting,confident,Audio and web conferencing services
+Business/Telecommunications/Services/Direct_Dial_Long_Distance,Calling & Phone,confident,Long distance calling
+Business/Telecommunications/Services/Messaging,Chat & Messaging,confident,Judgement: text and voice messaging services
+Business/Telecommunications/Services/Phone_Cards,Calling & Phone,confident,Calling cards
+Business/Telecommunications/Services/Toll_Free,Calling & Phone,confident,Toll-free numbers
+Business/Telecommunications/Services/VoIP,Calling & Phone,confident,Internet calling
+Business/Textiles_and_Nonwovens/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Business/Transportation_and_Logistics/Employment,Job Search,confident,Industry job boards and resumes for candidates
+Computers,,unmapped,"Default: hardware, consultants and system topics have no matching We360 category. Subjects that match have their own rows"
+Computers/Artificial_Intelligence,Research & Reference,confident,Academic and reference material
+Computers/CAD_and_CAM,Design,confident,Engineering design software
+Computers/Computer_Science,Research & Reference,confident,Academic material
+Computers/Data_Communications/Telephony,Calling & Phone,confident,Telephony systems
+Computers/Data_Communications/Unified_Messaging,Chat & Messaging,confident,"Judgement: combined voicemail, fax and email services"
+Computers/Data_Communications/Unified_Messaging/Fax_Server,Calling & Phone,confident,Fax over phone lines
+Computers/Data_Formats,Developer,confident,File format specifications
+Computers/Education,Education,confident,Computer training and courses
+Computers/Graphics,Design,confident,Graphics resources such as fonts and clip art
+Computers/Hardware/Retailers,Shopping,confident,Stores selling computer hardware
+Computers/Internet,,unmapped,"Default for internet topics outside the fixed Internet definition, such as history, policy and consultants"
+Computers/Internet/Access_Providers,Internet,confident,ISPs
+Computers/Internet/Chat,Chat & Messaging,confident,Chat networks and instant messaging
+Computers/Internet/Chat/Video,Meeting|Chat & Messaging,ambiguous,Video chat is both a meeting and a conversation. Skype is listed here
+Computers/Internet/Chat/Voice,Calling & Phone,confident,Voice chat such as TeamSpeak
+Computers/Internet/Cloud_Computing,Internet,confident,Judgement: cloud hosting
+Computers/Internet/Domain_Names,Internet,confident,Domain registrars and domain information
+Computers/Internet/E-mail,Email,confident,"Email services, spam filtering and help"
+Computers/Internet/E-mail/E-greetings,Lifestyle,confident,Greeting cards rather than email use
+Computers/Internet/E-mail/Marketing,Marketing,confident,Email marketing tools such as Mailchimp
+Computers/Internet/File_Sharing,File Sharing,confident,File sharing information and services
+Computers/Internet/Internet_Fax,Calling & Phone,confident,Judgement: fax services are nearest to calling
+Computers/Internet/News_and_Media,News & Entertainment,confident,News about the internet
+Computers/Internet/On_the_Web/Online_Communities,Social Media,confident,Social networks
+Computers/Internet/On_the_Web/Web_Applications/Bookmark_Managers,Knowledge Management,confident,Personal saved-page tools such as Instapaper
+Computers/Internet/On_the_Web/Web_Applications/Calendars,Office Apps,confident,Online calendars
+Computers/Internet/On_the_Web/Web_Applications/Content_Management,Developer,confident,"Website builders and content management systems, matching Site_Management"
+Computers/Internet/On_the_Web/Web_Applications/Personal_Information_Managers,Knowledge Management,confident,Personal notes and organisers
+Computers/Internet/On_the_Web/Web_Applications/Photo_Sharing,Photos,confident,Photo sharing such as Flickr
+Computers/Internet/On_the_Web/Web_Applications/Presentation_Sharing,Office Apps,confident,Online presentations
+Computers/Internet/On_the_Web/Web_Applications/Storage,File Sharing,confident,Cloud storage such as Dropbox
+Computers/Internet/On_the_Web/Web_Applications/Video_Sharing,Music & Videos,confident,Streaming video such as YouTube
+Computers/Internet/On_the_Web/Weblogs,Social Media|Developer,ambiguous,"Blog directories and help, which serve both readers and site builders"
+Computers/Internet/On_the_Web/Weblogs/Collaborative,Social Media,confident,Community blogs and meme sites
+Computers/Internet/On_the_Web/Weblogs/Hosts,Social Media,confident,Blog hosting platforms
+Computers/Internet/On_the_Web/Weblogs/Templates,Developer,confident,"Blog themes such as WordPress themes, used to build sites"
+Computers/Internet/On_the_Web/Weblogs/Tools,Developer,confident,"Blog plugins such as WordPress plugins, used to build sites"
+Computers/Internet/Protocols,Developer,confident,Protocol specifications
+Computers/Internet/Proxying_and_Filtering,Internet,confident,Judgement: web access tools
+Computers/Internet/RFCs,Developer,confident,Internet standards documents
+Computers/Internet/Searching,Internet,confident,Search engines and directories
+Computers/Internet/Telephony,Calling & Phone,confident,Internet telephony
+Computers/Internet/Training,Education,confident,Internet courses
+Computers/Internet/Web_Design_and_Development,Developer,confident,Web development tools and services
+Computers/Internet/Web_Design_and_Development/Designers,Design,confident,"Judgement: web design firms, which also build sites"
+Computers/Internet/Web_Design_and_Development/Hosting,Internet,confident,Web hosting
+Computers/Internet/Web_Design_and_Development/Promotion,Marketing,confident,Mostly search engine optimisation firms
+Computers/Mobile_Computing/Wireless_Data/Short_Messaging_Service,Chat & Messaging,confident,SMS services
+Computers/Multimedia/Digital_Video,Music & Videos,confident,"Judgement: video tools and formats, not streaming. Nearest fit"
+Computers/Multimedia/Music_and_Audio,Music & Videos,confident,"Judgement: audio players and tools, not streaming. Nearest fit"
+Computers/Open_Source,Developer,confident,Open source projects and licences
+Computers/Open_Source/Open_Content,Research & Reference,confident,Open encyclopedias. Wikipedia is listed here
+Computers/Programming,Developer,confident,Programming languages and tools
+Computers/Software/Accounting,Banking & Finance,confident,Judgement: finance software
+Computers/Software/Build_Management,Developer,confident,Software build tools
+Computers/Software/Business/E-Commerce,E-commerce,confident,Store platforms such as Shopify
+Computers/Software/Configuration_Management,Developer,confident,Version control such as Git
+Computers/Software/Databases,Developer,confident,Database software
+Computers/Software/Databases/Data_Mining,Analytics,confident,Data mining tools
+Computers/Software/Databases/Data_Warehousing,Analytics,confident,Data warehousing and decision support tools such as Tableau
+Computers/Software/Document_Management,Knowledge Management,confident,Internal document systems
+Computers/Software/Editors,Developer,confident,Text and code editors
+Computers/Software/Educational,Education,confident,Educational software
+Computers/Software/Fonts,Design,confident,Font design software
+Computers/Software/Graphics,Design,confident,Image editing and 3D software
+Computers/Software/Graphics/Image_Cataloguing,Photos,confident,Photo library software
+Computers/Software/Groupware,Office Apps,confident,Judgement: shared calendars and team software
+Computers/Software/Groupware/Microsoft_Exchange,Email,confident,Exchange add-ons
+Computers/Software/Groupware/Wiki,Knowledge Management,confident,Wiki software such as Confluence
+Computers/Software/Human_Resources/Recruitment_Management,Hiring & Recruitment,confident,Applicant tracking software
+Computers/Software/Internet/Authoring,Developer,confident,Web authoring tools
+Computers/Software/Internet/Clients,,unmapped,Default for other internet clients such as Telnet and SSH
+Computers/Software/Internet/Clients/Chat,Chat & Messaging,confident,Chat clients
+Computers/Software/Internet/Clients/File_Sharing,File Sharing,confident,Peer-to-peer clients
+Computers/Software/Internet/Clients/FTP,File Sharing,confident,File transfer clients
+Computers/Software/Internet/Clients/Mail,Email,confident,Email clients
+Computers/Software/Internet/Clients/SeaMonkey,Internet,confident,Browser suite
+Computers/Software/Internet/Clients/Video_Conferencing,Meeting,confident,Video conferencing clients
+Computers/Software/Internet/Clients/Web,Internet,confident,Browsers and feed readers
+Computers/Software/Internet/Servers,Developer,confident,Server software
+Computers/Software/Internet/Servers/Advertising,Marketing,confident,Ad servers
+Computers/Software/Internet/Servers/Chat,Chat & Messaging,confident,Chat servers
+Computers/Software/Internet/Servers/Collaboration,Office Apps,confident,Team collaboration tools such as Trello
+Computers/Software/Internet/Servers/FTP,File Sharing,confident,File transfer servers
+Computers/Software/Internet/Servers/Mail,Email,confident,Mail servers
+Computers/Software/Internet/Servers/Shopping,E-commerce,confident,Shopping cart software for sellers
+Computers/Software/Internet/Site_Management,Developer,confident,Site builders and management tools
+Computers/Software/Internet/Site_Management/Log_Analysis,Analytics,confident,Web log analysis
+Computers/Software/Marketing,Marketing,confident,Marketing software
+Computers/Software/Office_Suites,Office Apps,confident,Office suites
+Computers/Software/Online_Training,Education,confident,Online learning platforms
+Computers/Software/Operating_Systems,,unmapped,"Sites about operating systems. Not System Processes, which covers activity on the machine itself"
+Computers/Software/Presentation,Office Apps,confident,Presentation software
+Computers/Software/Project_Management,Office Apps,confident,Judgement: could also be Knowledge Management
+Computers/Software/Retailers,Shopping,confident,Stores selling software
+Computers/Software/Software_Engineering,Developer,confident,Software engineering methods and tools
+Computers/Software/Spreadsheets,Office Apps,confident,Spreadsheet software
+Computers/Software/Word_Processors,Office Apps,confident,Word processors
+Computers/Speech_Technology/Telephony,Calling & Phone,confident,Interactive voice response systems
+Games,Gaming,confident,"All games, including gambling"
+Health,Lifestyle,confident,Judgement: consumer health and wellbeing
+Health/Conditions_and_Diseases,Research & Reference,confident,Public medical reference. Includes patient forums such as HealingWell
+Health/Medicine,Research & Reference,confident,Judgement: clinical and practitioner material
+Home,Lifestyle,confident,"Cooking, gardening, family and home life"
+Home/Personal_Finance,Banking & Finance,confident,Personal finance advice and tools
+News,News & Entertainment,confident,News outlets and journalism
+Recreation,Lifestyle,confident,"Hobbies, travel, food and pets"
+Recreation/Humor,News & Entertainment,confident,Humour sites
+Reference,Research & Reference,confident,"Dictionaries, libraries, museums and archives"
+Reference/Education,Education,confident,"Schools, universities and course providers"
+Reference/Knowledge_Management,Research & Reference,confident,"Mostly about knowledge management as a discipline: public reference material, not internal wikis and notes"
+Reference/Knowledge_Management/Information_Assets/Business_Intelligence,Analytics,confident,Business intelligence vendors
+Reference/Knowledge_Management/Knowledge_Discovery,Analytics,confident,Data mining and visualisation tools
+Science,Research & Reference,confident,Judgement: mapped by subject since most sites are academic or informational
+Science/Instruments_and_Supplies,,unmapped,Equipment vendors rather than research sources
+Science/Math/Statistics/Software,Analytics,confident,Statistics software
+Shopping,Shopping,confident,Consumer stores
+Society,,unmapped,"Default for religion, law, government and similar subjects, which have no We360 equivalent"
+Society/Genealogy,Lifestyle,confident,"Family history as a personal hobby, like Recreation"
+Society/History,Research & Reference,confident,"Academic and public reference material, like Science"
+Society/Holidays,Lifestyle,confident,Holidays and celebrations
+Society/Law/Legal_Information,Research & Reference,confident,Public legal reference. Law firms in Society/Law/Services stay unmapped
+Society/Lifestyle_Choices,Lifestyle,confident,Lifestyle communities
+Society/Philosophy,Research & Reference,confident,Reference material such as the Stanford Encyclopedia of Philosophy
+Society/Relationships,Lifestyle,confident,Dating and relationships
+Sports,Sports,confident,All sports

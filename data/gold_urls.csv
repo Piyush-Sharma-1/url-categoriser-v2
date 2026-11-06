@@ -1,0 +1,86 @@
+url,label,also_acceptable,in_curated,note
+https://plausible.io/docs,Analytics,,no,Web analytics product documentation
+https://www.hotjar.com/,Analytics,Marketing,no,Website heatmaps and user behaviour
+https://www.wellsfargo.com/,Banking & Finance,,no,US bank
+https://www.icicibank.com/personal-banking,Banking & Finance,,yes,Indian private bank
+https://www.xero.com/,Banking & Finance,Office Apps,no,Accounting software
+https://www.vonage.com/,Calling & Phone,,no,Business phone service
+https://aircall.io/,Calling & Phone,,no,Cloud call centre software
+https://mattermost.com/,Chat & Messaging,,no,Team chat software
+https://www.wechat.com/,Chat & Messaging,Social Media,yes,Non-English: Chinese messaging app
+https://www.sketch.com/,Design,,no,Interface design app
+https://miro.com/app/dashboard/,Design,Office Apps,yes,Online whiteboard
+https://bitbucket.org/dashboard/overview,Developer,,no,Code hosting
+https://www.npmjs.com/package/react,Developer,,no,JavaScript package registry
+https://www.bigcommerce.com/,E-commerce,,no,Online store platform
+https://woocommerce.com/,E-commerce,Developer,no,Online store plugin
+https://www.edx.org/,Education,,no,Online courses
+https://byjus.com/,Education,,yes,Indian learning platform
+https://www.fastmail.com/,Email,,no,Email service
+https://proton.me/mail,Email,,yes,Encrypted email
+https://mega.nz/,File Sharing,,no,Cloud storage and file sharing
+https://www.mediafire.com/,File Sharing,,no,File hosting
+https://store.epicgames.com/en-US/,Gaming,Shopping,no,Game store
+https://www.miniclip.com/,Gaming,,no,Browser games
+https://www.workable.com/,Hiring & Recruitment,,no,Applicant tracking software
+https://www.smartrecruiters.com/,Hiring & Recruitment,,no,Recruiting software
+http://localhost:8080/dashboard,In House Tools,Developer,no,Local development server
+https://wiki.acme.internal/hr/policies,In House Tools,Knowledge Management,no,Internal company wiki
+https://duckduckgo.com/?q=hotels,Internet,,no,Search engine
+https://www.namecheap.com/,Internet,,no,Domain registrar and hosting
+https://www.ziprecruiter.com/,Job Search,Hiring & Recruitment,no,Job board used by candidates and employers
+https://www.shine.com/,Job Search,,no,Indian job board
+https://obsidian.md/,Knowledge Management,,no,Personal notes app
+https://slab.com/,Knowledge Management,,no,Team knowledge base
+https://www.allrecipes.com/,Lifestyle,,no,Recipes
+https://www.zomato.com/,Lifestyle,Shopping,yes,Indian restaurant listings and food delivery
+https://moz.com/,Marketing,,no,Search engine optimisation tools
+https://www.constantcontact.com/,Marketing,Email,no,Email marketing
+https://www.webex.com/,Meeting,,yes,Video meetings
+https://whereby.com/,Meeting,,no,Video meetings
+https://vimeo.com/,Music & Videos,,no,Video hosting and streaming
+https://www.jiosaavn.com/,Music & Videos,,yes,Indian music streaming
+https://www.reuters.com/world/,News & Entertainment,,no,News agency
+https://www.spiegel.de/,News & Entertainment,,no,Non-English: German news magazine
+https://www.amarujala.com/,News & Entertainment,,no,Indian Hindi news
+https://www.smartsheet.com/,Office Apps,,no,Work management spreadsheets
+https://monday.com/,Office Apps,,yes,Task management
+https://500px.com/,Photos,Social Media,no,Photo sharing community
+https://www.shutterstock.com/,Photos,Design,no,Stock photos
+https://www.britannica.com/,Research & Reference,,no,Encyclopedia
+https://chatgpt.com/,Research & Reference,Office Apps,yes,AI assistant
+https://www.walmart.com/,Shopping,,no,Retail store
+https://www.rakuten.co.jp/,Shopping,,yes,Non-English: Japanese online store
+https://www.irctc.co.in/,Lifestyle,Shopping,no,Indian railway tickets
+https://www.tiktok.com/,Social Media,Music & Videos,no,Short-video social network
+https://vk.com/,Social Media,,yes,Non-English: Russian social network
+https://www.naver.com/,Internet,News & Entertainment,no,Non-English: Korean search portal
+https://www.nba.com/,Sports,,no,Basketball league
+https://www.cricbuzz.com/,Sports,News & Entertainment,yes,Indian cricket scores and news
+chrome://settings/,System Processes,,no,Browser settings
+about:blank,System Processes,,no,Blank browser page
+not a url,Undefined,,no,Not a URL
+banana,Undefined,,no,A bare word
+mailto:hr@acme.com,Undefined,,no,An email address
+https://www.vatican.va/,Undefined,,no,Religion
+https://www.supremecourt.gov/,Undefined,Research & Reference,no,Law and government
+https://www.india.gov.in/,Undefined,,no,Indian government portal
+https://www.caterpillar.com/,Undefined,,no,Heavy industry
+https://www.boeing.com/,Undefined,,no,Aerospace manufacturer
+https://www.redcross.org/,Undefined,,no,Charity
+https://www.maersk.com/,Undefined,,no,Shipping
+https://www.dhl.com/,Undefined,,no,Logistics
+https://x7k2q9vz.com/,Undefined,,no,Meaningless name
+https://qwzkp3.net/login,Undefined,,no,Meaningless name
+https://blue-harbor-consulting.biz/,Undefined,,no,Unknown consultancy
+http://8.8.8.8/,Undefined,,no,Public IP address
+https://docs.google.com/spreadsheets/d/abc,Office Apps,,yes,major-app: Google Sheets document
+https://mail.google.com/mail/u/0/#inbox,Email,,yes,major-app: Gmail inbox
+https://teams.microsoft.com/l/meetup-join/abc,Meeting,Chat & Messaging,yes,major-app: Teams meeting link
+https://outlook.office365.com/mail/,Email,,yes,major-app: Outlook mailbox
+https://acme.atlassian.net/wiki/spaces/HR,Knowledge Management,,yes,major-app: Confluence wiki page
+https://acme.atlassian.net/browse/PROJ-1,Developer,Office Apps,yes,major-app: Jira ticket
+https://acme.lightning.force.com/lightning/page/home,Marketing,Office Apps,yes,major-app: Salesforce home page
+https://us02web.zoom.us/j/123456,Meeting,,yes,major-app: Zoom meeting link
+https://github.com/org/repo/pull/1,Developer,,yes,major-app: GitHub pull request
+https://www.amazon.in/dp/B0EXAMPLE,Shopping,,yes,major-app: Amazon India product page

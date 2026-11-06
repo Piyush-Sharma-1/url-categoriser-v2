@@ -1,0 +1,144 @@
+host_or_prefix,we360_category,alternative_category,note
+analytics.google.com,Analytics,,Google Analytics
+powerbi.com,Analytics,,Microsoft Power BI
+mixpanel.com,Analytics,,Product analytics
+tableau.com,Analytics,,Data visualisation
+lookerstudio.google.com,Analytics,,Google Looker Studio
+paypal.com,Banking & Finance,,Online payments
+stripe.com,Banking & Finance,E-commerce,Payment processing
+paytm.com,Banking & Finance,Shopping,Indian payments app
+phonepe.com,Banking & Finance,,Indian payments app
+hdfcbank.com,Banking & Finance,,Indian bank
+onlinesbi.sbi,Banking & Finance,,State Bank of India online banking
+icicibank.com,Banking & Finance,,Indian bank
+axisbank.com,Banking & Finance,,Indian bank
+zerodha.com,Banking & Finance,,Indian investing platform
+groww.in,Banking & Finance,,Indian investing platform
+truecaller.com,Calling & Phone,,Caller identification
+skype.com,Calling & Phone,Meeting,Internet calling
+ringcentral.com,Calling & Phone,Meeting,Business phone system
+slack.com,Chat & Messaging,,Team chat
+whatsapp.com,Chat & Messaging,,Messaging app
+telegram.org,Chat & Messaging,,Messaging app
+discord.com,Chat & Messaging,,Community chat
+chat.google.com,Chat & Messaging,,Google Chat
+wechat.com,Chat & Messaging,,Chinese messaging app
+figma.com,Design,,Interface design
+canva.com,Design,,Graphic design
+adobe.com,Design,,Creative software
+miro.com,Design,Office Apps,Online whiteboard
+github.com,Developer,,Code hosting
+gitlab.com,Developer,,Code hosting
+stackoverflow.com,Developer,,Programming questions
+atlassian.net,Developer,Knowledge Management,Hosted Jira and Confluence
+aws.amazon.com,Developer,,Amazon Web Services
+cloud.google.com,Developer,,Google Cloud
+sourceforge.net,Developer,,Open source project hosting
+shopify.com,E-commerce,,Store platform
+sellercentral.amazon.com,E-commerce,,Amazon seller tools
+sellercentral.amazon.in,E-commerce,,Amazon India seller tools
+coursera.org,Education,,Online courses
+udemy.com,Education,,Online courses
+khanacademy.org,Education,,Free online lessons. Its homepage listing is in the excluded Kids_and_Teens branch
+classroom.google.com,Education,,Google Classroom
+byjus.com,Education,,Indian learning platform
+mail.google.com,Email,,Gmail
+gmail.com,Email,,Gmail
+outlook.office.com,Email,,Microsoft 365 mail
+outlook.live.com,Email,,Outlook personal mail
+outlook.com,Email,,Outlook personal mail
+mail.yahoo.com,Email,,Yahoo Mail
+mail.zoho.com,Email,,Zoho Mail
+outlook.office365.com,Email,,Microsoft 365 mail
+proton.me,Email,,Encrypted email
+drive.google.com,File Sharing,,Google Drive
+dropbox.com,File Sharing,,Cloud storage
+box.com,File Sharing,,Cloud storage
+wetransfer.com,File Sharing,,File transfer
+onedrive.live.com,File Sharing,,Microsoft OneDrive
+steampowered.com,Gaming,,Game store and platform
+roblox.com,Gaming,,Online games
+chess.com,Gaming,,Online chess
+greenhouse.io,Hiring & Recruitment,,Applicant tracking
+lever.co,Hiring & Recruitment,,Applicant tracking
+linkedin.com/talent,Hiring & Recruitment,,LinkedIn recruiter tools
+google.com,Internet,,Search engine. More specific Google services have their own rows
+bing.com,Internet,,Search engine
+baidu.com,Internet,,Chinese search engine
+yandex.ru,Internet,,Russian search engine
+godaddy.com,Internet,,Domain registrar and hosting
+naukri.com,Job Search,,Indian job board
+indeed.com,Job Search,,Job board
+monster.com,Job Search,,Job board
+glassdoor.com,Job Search,,Job listings and company reviews
+linkedin.com/jobs,Job Search,,LinkedIn job listings
+foundit.in,Job Search,,Indian job board
+notion.so,Knowledge Management,,Team wiki and notes
+evernote.com,Knowledge Management,,Notes
+keep.google.com,Knowledge Management,,Google Keep notes
+sites.google.com,Knowledge Management,,Judgement: often team intranet pages
+sharepoint.com,Knowledge Management,File Sharing,Microsoft intranet and document sites
+atlassian.net/wiki,Knowledge Management,,Hosted Confluence
+makemytrip.com,Lifestyle,,Indian travel booking
+zomato.com,Lifestyle,,Indian food delivery
+swiggy.com,Lifestyle,,Indian food delivery
+hubspot.com,Marketing,,Marketing platform
+mailchimp.com,Marketing,,Email marketing
+ads.google.com,Marketing,,Google Ads
+salesforce.com,Marketing,Office Apps,Customer relationship software. No CRM category exists
+force.com,Marketing,Office Apps,Salesforce-hosted apps. No CRM category exists
+zoom.us,Meeting,,Video meetings
+teams.microsoft.com,Meeting,Chat & Messaging,Microsoft Teams
+meet.google.com,Meeting,,Google Meet
+webex.com,Meeting,,Video meetings
+youtube.com,Music & Videos,,Video streaming
+netflix.com,Music & Videos,,Video streaming
+spotify.com,Music & Videos,,Music streaming
+twitch.tv,Music & Videos,Gaming,Live video streaming
+hotstar.com,Music & Videos,,Indian video streaming
+jiosaavn.com,Music & Videos,,Indian music streaming
+jiohotstar.com,Music & Videos,,Indian video streaming
+loom.com,Music & Videos,Meeting,Recorded video messages
+bbc.com,News & Entertainment,,News
+bbc.co.uk,News & Entertainment,,News and programmes
+nytimes.com,News & Entertainment,,News
+ndtv.com,News & Entertainment,,Indian news
+timesofindia.indiatimes.com,News & Entertainment,,Indian news
+thehindu.com,News & Entertainment,,Indian news
+news.google.com,News & Entertainment,,Google News
+docs.google.com,Office Apps,,Google Docs and Sheets and Slides
+calendar.google.com,Office Apps,,Google Calendar
+office.com,Office Apps,,Microsoft 365 apps
+trello.com,Office Apps,,Task boards
+asana.com,Office Apps,,Task management
+zoho.com,Office Apps,,Indian business software suite. Zoho Mail has its own row
+monday.com,Office Apps,,Task management
+clickup.com,Office Apps,,Task management
+photos.google.com,Photos,,Google Photos
+flickr.com,Photos,,Photo sharing
+imgur.com,Photos,Social Media,Image sharing
+wikipedia.org,Research & Reference,,Encyclopedia
+scholar.google.com,Research & Reference,,Academic search
+translate.google.com,Research & Reference,,Translation
+chatgpt.com,Research & Reference,Developer|Office Apps,AI assistant. Taxonomy gap: no We360 category fits AI assistants
+claude.ai,Research & Reference,Developer|Office Apps,AI assistant. Taxonomy gap: no We360 category fits AI assistants
+gemini.google.com,Research & Reference,Developer|Office Apps,AI assistant. Taxonomy gap: no We360 category fits AI assistants
+perplexity.ai,Research & Reference,Developer|Office Apps,AI assistant. Taxonomy gap: no We360 category fits AI assistants
+copilot.microsoft.com,Research & Reference,Developer|Office Apps,AI assistant. Taxonomy gap: no We360 category fits AI assistants
+amazon.com,Shopping,,Online store. Seller and cloud services have their own rows
+amazon.in,Shopping,,Indian online store
+flipkart.com,Shopping,,Indian online store
+myntra.com,Shopping,,Indian fashion store
+etsy.com,Shopping,E-commerce,Marketplace. Buyers are the larger audience
+rakuten.co.jp,Shopping,,Japanese online store
+taobao.com,Shopping,,Chinese online store
+meesho.com,Shopping,,Indian online store
+facebook.com,Social Media,,Social network
+instagram.com,Social Media,,Social network
+x.com,Social Media,,Social network
+twitter.com,Social Media,,Social network
+linkedin.com,Social Media,,Professional network. Jobs and recruiter tools have their own rows
+reddit.com,Social Media,News & Entertainment,Community forums
+vk.com,Social Media,,Russian social network
+espn.com,Sports,,Sports news
+cricbuzz.com,Sports,,Cricket news and scores

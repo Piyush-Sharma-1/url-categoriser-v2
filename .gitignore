@@ -1,0 +1,7 @@
+# The raw Curlie dump is 177 MB compressed and 619 MB extracted. It is downloaded by a script, not committed.
+data/raw/
+
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
