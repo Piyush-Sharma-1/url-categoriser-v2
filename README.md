@@ -4,7 +4,7 @@ An offline Python tool that assigns a URL to one of We360's 29 categories and ex
 
 The full spec, taxonomy rules, category definitions, and detailed results are in [docs/DECISIONS.md](docs/DECISIONS.md).
 
-An extension that adds a second dataset (UT1) is in the separate repository url-categoriser-v2.
+An extension that adds a second dataset (UT1) is in the separate repository [url-categoriser-v2](https://github.com/Piyush-Sharma-1/url-categoriser-v2).
 
 ## Quickstart
 
@@ -178,3 +178,7 @@ Directory data comes from [Curlie](https://curlie.org/), licensed under [Creativ
 > With content from Curlie.org - the largest human-edited directory of the web. Contribute by submitting a website or becoming an editor.
 
 This project filters Curlie's listings and maps its categories to We360's. The results use the snapshot `curlie-rdf-all.tar.gz`, downloaded on 6 November 2026 from `https://curlie.org/directory-dl`, with SHA-256 `696098a50485445886e763c70f330a32e9214036316b0d66e67dbd54a71b0e04`. Its data files are dated 3 February 2026.
+
+## Licence
+
+The code is under the [MIT licence](LICENSE). The data files keep their own licences: Curlie data is CC BY 3.0, and the UT1 data in the separate v2 repository is CC BY-SA 4.0.
